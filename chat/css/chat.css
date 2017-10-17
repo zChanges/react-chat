@@ -31,11 +31,11 @@ input::-ms-input-placeholder {
 }
 #chat-client {
     padding: 20px;
-    border:1px solid #dddddd;
-    border-top: none;
-    margin-bottom: 15px;
-    min-height: 374px;
-    max-height: 374px;
+    border:1px solid #dddddd !important;
+    border-top: none !important;
+    margin-bottom: 15px !important;
+    /* min-height: 200px; */
+    max-height: 304px;
     overflow: hidden;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;

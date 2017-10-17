@@ -12,6 +12,7 @@
     <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/chat.css"/>
     <link rel="stylesheet" href="./css/face.css">
+    <link href="https://cdn.bootcss.com/jquery.scrollbar/0.2.11/jquery.scrollbar.css" rel="stylesheet">
     
     
     <!--[if lt IE 9]>
@@ -31,28 +32,27 @@
                 <!-- 聊天 内容-->
                 <div role="tabpanel" class="tab-pane active chatCtn" id="client">
                     <div id='chat-client'>
-                        <div class="chatClient">
-                                <div class="chat-item">
-                                    <div class="chI-time"><span>10月16日 11:11:21</span></div>
-                                    <div class="chIndex-context">
-                                        <div class="head-logo"><img src='./img/robot.png'/></div>
-                                        <div class="">
-                                            <div class="item-name">IT小助手</div>
-                                            <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
-                                        </div>
-                                    </div>
+                        <div class="chat-item">
+                            <div class="chI-time"><span>10月16日 11:11:21</span></div>
+                            <div class="chIndex-context">
+                                <div class="head-logo"><img src='./img/robot.png'/></div>
+                                <div class="">
+                                    <div class="item-name">IT小助手</div>
+                                    <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
                                 </div>
-                                <div class="chat-item chat-My">
-                                    <div class="chI-time"><span>10月16日 11:11:21</span></div>
-                                    <div class="My-context">
-                                        <div class="head-logo"><img src='./img/robot.png'/></div>
-                                        <div class="">
-                                            <div class="item-name">我</div>
-                                            <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="chat-item chat-My">
+                            <div class="chI-time"><span>10月16日 11:11:21</span></div>
+                            <div class="My-context">
+                                <div class="head-logo"><img src='./img/robot.png'/></div>
+                                <div class="">
+                                    <div class="item-name">我</div>
+                                    <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
                                 </div>
-                                <div class="chat-item chat-My">
+                            </div>
+                        </div>
+                        <div class="chat-item chat-My">
                                         <div class="chI-time"><span>10月16日 11:11:21</span></div>
                                         <div class="My-context">
                                             <div class="head-logo"><img src='./img/robot.png'/></div>
@@ -82,7 +82,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                        </div>
                     </div>
                 
 
@@ -449,8 +448,10 @@
 <script src="./js/scrollbar.js"></script>
 <script src="./js/base.js"></script>
 <script src="./js/face.js"></script>
-
+<link href="https://cdn.bootcss.com/jquery.scrollbar/0.2.11/jquery.scrollbar.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/jquery.scrollbar/0.2.11/jquery.scrollbar.js"></script>
 <script>
+    var header = 0;
     // $("#evaluateModal").modal('show')
     //调用表情插件
     $('.chatArea', $('.chatCtn')).face({
@@ -469,6 +470,7 @@
         var context = $("#replyContent").val();
         $("#chat-client").append(myReplyTemplay(context))
         $("#replyContent").val('')
+        $('#chat-client').scrollTop(header);
     })
 
 
@@ -540,7 +542,16 @@
     
 
     function init() {
-        $('.chatClient').scrollbar({})
+        $('#chat-client').scrollbar();
+        jQuery('#chat-client').scrollbar({
+            "onScroll": function(y, x){
+                // console.log(y,x)
+                header = y.size;
+                if(y.scroll == y.maxScroll){
+                    console.log('Scrolled to bottom');
+                }
+            }
+        });
     }
 
 </script>

@@ -250,8 +250,8 @@
             var This = this;
 
             //调用滚动插件(表情框)
-            This.obj.scrollbar = This.$obj.$FA_ScrollCtn.scrollbar({
-            });
+            // This.obj.scrollbar = This.$obj.$FA_ScrollCtn.scrollbar({
+            // });
             This.$obj.$FA_tipScrollCtn.hide();//调用滚动插件后才能隐藏
 
             //选择表情
@@ -288,8 +288,8 @@
 
                     This.$obj.$FA_backCtn.stop().show();
 
-                    This.obj.scrollbar.update();
-                    This.obj.scrollbar.scrollTo('top');
+                    // This.obj.scrollbar.update();
+                    // This.obj.scrollbar.scrollTo('top');
 
                     //显示后才能获取top
                     This.obj.top1 = 0;
@@ -314,7 +314,7 @@
             });
         },
         update: function() {
-            this.obj.scrollbar.update();
+            // this.obj.scrollbar.update();
         },
     }
 
