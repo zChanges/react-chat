@@ -1,0 +1,150 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">   -->
+    <!-- <link rel="shortcut icon" href="images/logo_min.png" type="/image/x-icon">   -->
+    <meta http-equiv=”X-UA-Compatible” content=”IE=edge,chrome=1″/>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <title>美的在线客服</title>
+    <!-- <link rel="stylesheet"  href="./bootstrap/css/bootstrap.min.css"/> -->
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="./css/chat.css"/>
+    <!--[if lt IE 9]>
+       <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+</head>  
+<body>
+    <div id='chat' class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        <div id="chat-context" class="pull-left col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active" style="margin-left:15px;"><a href="#client" aria-controls="client" role="tab" data-toggle="tab">在线客户</a></li>
+                <li role="presentation"><a href="#accounting" aria-controls="accounting" role="tab" data-toggle="tab">自助报账</a></li>
+            </ul>
+        
+            <div class="tab-content">
+                <!-- 聊天 内容-->
+                <div role="tabpanel" class="tab-pane active" id="client">
+                    <div id="chat-client">
+                            <div class="chat-item">
+                                <div class="chI-time"><span>10月16日 11:11:21</span></div>
+                                <div class="chIndex-context">
+                                    <div class="head-logo"><img src='./img/robot.png'/></div>
+                                    <div class="">
+                                        <div class="item-name">IT小助手</div>
+                                        <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-item chat-My">
+                                <div class="chI-time"><span>10月16日 11:11:21</span></div>
+                                <div class="My-context">
+                                    <div class="head-logo"><img src='./img/robot.png'/></div>
+                                    <div class="">
+                                        <div class="item-name">我</div>
+                                        <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="chat-operation">
+                        <i class="fa fa-smile-o" aria-hidden="true"></i>
+                        <i class="fa fa-scissors" aria-hidden="true"></i>
+                        <i class="fa fa-folder-o" aria-hidden="true"></i> 
+                    </div>
+
+                    <div class="client-bootom">
+                        <textarea placeholder="你可以尝试输入类似'美信登陆不成功'、'mip显示异常' 等问题。"></textarea>
+                        <button class="bootom-btn pull-right btn-send">发送</button>
+                        <button class="bootom-btn pull-right btn-out">退出人工服务</button>
+                    </div>
+                    
+                    <div class="chat-hint">机器人无法解决？<a>转人工服务</a></div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="accounting">...</div>
+            </div>
+        </div>
+
+        <div id="chat-menu pull-right" class="pull-right col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <!-- 最近服务单 -->
+            <div class="serviceOrder">
+
+                <div class="serviceO-title">
+                    <div class="">最近服务单</div>
+                    <div class="serviceO-page">
+                        <span class="pageNum">1/4</span>
+                        <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                        <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="serviceO-Context">
+                    <div class="serviceOC-titl">
+                        <div>单号:<b>123456789</b></div>
+                        <div class="pull-right state">处理中</div>
+                    </div>
+                    <div class="serviceOC-context">
+                        账户：123你好！ 我们部长的账号登陆不理哦啊手机没响，换手机也没用换手机也没用换手机也没用
+                    </div>
+
+                    <div class="serviceOC-foot">
+                        <div class="item state">2017-10-25</div>
+                        <div class="pull-right gray">催单</div>
+                    </div>
+                </div>
+
+                <div class="serviceO-Context">
+                    <div class="serviceOC-titl">
+                        <div>单号:<b>123456789</b></div>
+                        <div class="pull-right state">处理中</div>
+                    </div>
+                    <div class="serviceOC-context">
+                        换手机也没用换手机也没用换手机也没用
+                    </div>
+
+                    <div class="serviceOC-foot">
+                        <div class="item state">2017-10-25</div>
+                        <div class="pull-right gray">催单</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 公告 -->
+            <div class="notice">
+                    <div class="serviceO-title">
+                        <div class="">最近服务单</div>
+                        <div class="serviceO-page">
+                            <span class="pageNum">1/4</span>
+                            <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                            <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <div class="notice-Context">
+                        <div class="">《紧急通知》</div>
+                        <div class="not-Con">
+                                紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知
+                                紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通
+                        </div>
+                        <div class="not-foot">
+                                <div class="gray">查看详情>></div>
+                                <div class="item state pull-right">2017-10-25</div>
+                        </div>
+                    </div>
+
+            </div>
+
+
+        </div>
+    </div>  
+</body>  
+</html>
+<script src="./js/jquery/jquery-1.11.3.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
