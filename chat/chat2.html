@@ -1,73 +1,183 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">  
 <head>  
-    <meta charset="UTF-8">  
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">   -->
-    <!-- <link rel="shortcut icon" href="images/logo_min.png" type="/image/x-icon">   -->
-    <meta http-equiv=”X-UA-Compatible” content=”IE=edge,chrome=1″/>
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>美的在线客服</title>
-    <!-- <link rel="stylesheet"  href="./bootstrap/css/bootstrap.min.css"/> -->
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="./font/font-awesome.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/chat.css"/>
+    <link rel="stylesheet" href="./css/face.css">
+    
+    
     <!--[if lt IE 9]>
-       <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+        <script src="./js/html5shiv.min.js"></script>
+        <script src="./js/respond.min.js"></script>
     <![endif]-->
 </head>  
 <body>
-    <div id='chat' class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+    <div id='chat' class="col-xs-8">
         <div id="chat-context" class="pull-left col-xs-9 col-sm-9 col-md-9 col-lg-9">
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active" style="margin-left:15px;"><a href="#client" aria-controls="client" role="tab" data-toggle="tab">在线客户</a></li>
-                <li role="presentation"><a href="#accounting" aria-controls="accounting" role="tab" data-toggle="tab">自助报账</a></li>
+                <li role="presentation" class="active"  style="margin-left:15px;"><a href="#client" aria-controls="client" role="tab" data-toggle="tab">在线客户</a></li>
+                <li role="presentation" ><a href="#accounting" aria-controls="accounting" role="tab" data-toggle="tab">自助报账</a></li>
             </ul>
         
             <div class="tab-content">
                 <!-- 聊天 内容-->
-                <div role="tabpanel" class="tab-pane active" id="client">
-                    <div id="chat-client">
-                            <div class="chat-item">
-                                <div class="chI-time"><span>10月16日 11:11:21</span></div>
-                                <div class="chIndex-context">
-                                    <div class="head-logo"><img src='./img/robot.png'/></div>
-                                    <div class="">
-                                        <div class="item-name">IT小助手</div>
-                                        <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
+                <div role="tabpanel" class="tab-pane active chatCtn" id="client">
+                    <div id='chat-client'>
+                        <div class="chatClient">
+                                <div class="chat-item">
+                                    <div class="chI-time"><span>10月16日 11:11:21</span></div>
+                                    <div class="chIndex-context">
+                                        <div class="head-logo"><img src='./img/robot.png'/></div>
+                                        <div class="">
+                                            <div class="item-name">IT小助手</div>
+                                            <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="chat-item chat-My">
-                                <div class="chI-time"><span>10月16日 11:11:21</span></div>
-                                <div class="My-context">
-                                    <div class="head-logo"><img src='./img/robot.png'/></div>
-                                    <div class="">
-                                        <div class="item-name">我</div>
-                                        <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
+                                <div class="chat-item chat-My">
+                                    <div class="chI-time"><span>10月16日 11:11:21</span></div>
+                                    <div class="My-context">
+                                        <div class="head-logo"><img src='./img/robot.png'/></div>
+                                        <div class="">
+                                            <div class="item-name">我</div>
+                                            <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="chat-item chat-My">
+                                        <div class="chI-time"><span>10月16日 11:11:21</span></div>
+                                        <div class="My-context">
+                                            <div class="head-logo"><img src='./img/robot.png'/></div>
+                                            <div class="">
+                                                <div class="item-name">我</div>
+                                                <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="chat-item chat-My">
+                                            <div class="chI-time"><span>10月16日 11:11:21</span></div>
+                                            <div class="My-context">
+                                                <div class="head-logo"><img src='./img/robot.png'/></div>
+                                                <div class="">
+                                                    <div class="item-name">我</div>
+                                                    <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="chat-item chat-My">
+                                                <div class="chI-time"><span>10月16日 11:11:21</span></div>
+                                                <div class="My-context">
+                                                    <div class="head-logo"><img src='./img/robot.png'/></div>
+                                                    <div class="">
+                                                        <div class="item-name">我</div>
+                                                        <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                        </div>
                     </div>
+                
 
-                    <div class="chat-operation">
-                        <i class="fa fa-smile-o" aria-hidden="true"></i>
+                    <div class="chat-operation chatBodyCtn">
+                        <i class="fa fa-smile-o  moodBtn" aria-hidden="true"></i>
                         <i class="fa fa-scissors" aria-hidden="true"></i>
                         <i class="fa fa-folder-o" aria-hidden="true"></i> 
                     </div>
 
                     <div class="client-bootom">
-                        <textarea placeholder="你可以尝试输入类似'美信登陆不成功'、'mip显示异常' 等问题。"></textarea>
-                        <button class="bootom-btn pull-right btn-send">发送</button>
+                        <textarea id="replyContent" class="chatArea" placeholder="你可以尝试输入类似'美信登陆不成功'、'mip显示异常' 等问题。"></textarea>
+                        <button class="bootom-btn pull-right btn-send" id="itSend">发送</button>
                         <button class="bootom-btn pull-right btn-out">退出人工服务</button>
                     </div>
                     
                     <div class="chat-hint">机器人无法解决？<a>转人工服务</a></div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="accounting">...</div>
+
+                <!-- 自助报账 -->
+                <div role="tabpanel" class="tab-pane" id="accounting">
+
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label  class="col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label">报账信息</label>
+                        </div>
+                        <div class="form-group">
+                          <label  class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label"><span class="required-ico">*</span>系统名称</label>
+                          <div class="col-sm-3 col-md-3  col-xs-3">   
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label"><span class="required-ico">*</span>问题描述</label>
+                          <div class="col-lg-8 col-md-8 col-xs-8">
+                                <textarea class="form-control" rows="6"></textarea>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label">附件</label>
+                            <div class="col-lg-10 col-md-9">
+                                <!-- <input type="file" class="upload-btn"/> -->
+                                <a class="a-upload">
+                                    <input type="file" name="" id="">上传文件
+                                </a>
+                                <span style="margin-left:10px; position: relative; top: -12px;" class="state">文件不得超过5M，支持以下格式：office、txt、bmp、rar、zip</span>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group" style="margin-top:42px">
+                            <label  class=" col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label">报账人资料</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label  class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label"><span class="required-ico">*</span>所属部门</label>
+                            <div class="col-sm-3 col-md-3 col-xs-3">   
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+
+                            <label  class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label"><span class="required-ico">*</span>所属区域</label>
+                            <div class="col-sm-3 col-md-3 col-xs-3">   
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        
+                        <div class="form-group">
+                          <div class="col-lg-offset-2 col-sm-offset-3 col-md-offset-3 col-xs-offset-2 col-lg-10 col-xs-10">
+                            <button type="botton" style="margin-top:30px;" class="btn btn-default evaluate-color">提交报障</button>
+                          </div>
+                        </div>
+                    </form>
+                    
+                </div>
             </div>
         </div>
 
@@ -89,13 +199,13 @@
                         <div>单号:<b>123456789</b></div>
                         <div class="pull-right state">处理中</div>
                     </div>
-                    <div class="serviceOC-context">
+                    <div class="serviceOC-context"  data-toggle="modal" data-target="#chatModal">
                         账户：123你好！ 我们部长的账号登陆不理哦啊手机没响，换手机也没用换手机也没用换手机也没用
                     </div>
 
                     <div class="serviceOC-foot">
                         <div class="item state">2017-10-25</div>
-                        <div class="pull-right gray">催单</div>
+                        <div class="pull-right gray" data-toggle="modal" data-target="#evaluateModal">评价</div>
                     </div>
                 </div>
 
@@ -119,7 +229,7 @@
             <!-- 公告 -->
             <div class="notice">
                     <div class="serviceO-title">
-                        <div class="">最近服务单</div>
+                        <div class="">公告</div>
                         <div class="serviceO-page">
                             <span class="pageNum">1/4</span>
                             <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
@@ -143,8 +253,294 @@
 
 
         </div>
-    </div>  
+    </div> 
+    
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#chatModal">Large modal</button> -->
+    
+    <div class="modal fade bs-example-modal-lg" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" id="chat-modal">
+                <form class="form-horizontal">
+                    <div class="form-group serve">
+                        <label  class="col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label">服务详情</label>
+                        <div class="serveProcess">
+                            <div class="process-round">
+                                评价
+                                <span class="process-time">2017-10-17 12:00</span>
+                            </div>
+                            <div class="crosswise"></div>
+                            <div class="process-round">评价
+                                <span class="process-time">2017-10-17 12:00</span>
+                            </div>
+                            <div class="crosswise"></div>
+                            <div class="process-round">评价
+                                    <span class="process-time">2017-10-17 12:00</span>
+                            </div>
+                            <div class="crosswise processPass-color"></div>
+                            <div class="process-round roundPass-color">评价</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">单号:</label>
+                        <div class="col-sm-3 col-md-3  col-xs-3">  
+                                <label class="control-label not-Weight">13251321321</label>
+                                <button type="botton" class="btn evaluate-btn">待评价</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">系统名称:</label>
+                        <div class="col-lg-8 col-md-8 col-xs-8">
+                                <label class="control-label not-Weight">美信</label> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">问题描述:</label>
+                        <div class="col-sm-12">
+                        </div>
+                        <div class="col-sm-8 col-lg-offset-1 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+                            账号:你好，描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">附件:</label>
+                        <div class="col-lg-8 col-md-8 col-xs-8">
+                                <div class="file-img">
+                                    <img style="display: inherit" src='./img/robot.png'/>
+                                    <span>附件名称.jpg</span>
+                                </div>
+
+                                <div class="file-img">
+                                    <img style="display: inherit" src='./img/robot.png'/>
+                                    <span>附件名称.jpg</span>
+                                </div>
+
+                                <div class="file-img">
+                                    <img style="display: inherit" src='./img/robot.png'/>
+                                    <span>附件名称.jpg</span>
+                                </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">催单次数:</label>
+                        <div class="col-lg-8 col-md-8 col-xs-8">
+                            <label class="control-label not-Weight">1次</label> 
+                        </div>
+                    </div>
+             
+                    <div class="form-group">
+                        <div class="page-header col-lg-offset-1 col-lg-10"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">处理人:</label>
+                        <div class="col-lg-8 col-md-8 col-xs-8">
+                                <label class="control-label not-Weight">附件</label> 
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">处理意见:</label>
+                        <div class="col-lg-8 col-md-8 col-xs-8">
+                            <label class="control-label not-Weight">1次</label> 
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-sm-offset-3 col-md-offset-3 col-xs-offset-2 col-lg-10 col-xs-10 col-md-8 col-sm-8 Process-foot">
+                            <button data-dismiss="modal" aria-label="Close" aria-hidden="true" style="margin-right:20px" type="botton" class="btn btn-default pull-right">返回</button>
+                            <button type="botton" class="btn btn-default pull-right evaluate-color">评价</button>
+                        </div>
+                    </div>
+                </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#evaluateModal">Large modal</button> -->
+    
+    <div class="modal fade bs-example-modal-lg" id="evaluateModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" id="chat-modal">
+                <form class="form-horizontal">
+                    <div class="form-group serve">
+                        <label  class="col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label">评价</label>
+                    </div>
+
+                    <div class="form-group ">
+                        <label  class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">工程师:</label>
+                        <div class="col-sm-3 col-md-3  col-xs-3 detail">  
+                            <label class="control-label not-Weight"><b>13251321321</b></label>
+                            <label class="control-label not-Weight">工号1231456</label>
+                            <button type="button" class="btn unsolved">工单未解决</button>
+                        </div>
+                    </div>
+
+      
+                    <div class="form-group">
+                        <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">单号:</label>
+                        <div class="col-lg-8 col-md-8 col-xs-8">
+                                <label class="control-label not-Weight">321564165164</label> 
+                        </div>
+                    </div>
+
+                
+                    <div class="form-group">
+                            <div class="page-header col-lg-offset-1 col-lg-10"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">满意度评价:</label>
+                        <div class="col-lg-8 col-md-7">
+                            <button type="button" class="btn isSatisfaction-btn Satisfaction-color"><i class="fa fa-smile-o" aria-hidden="true"></i><span>满意</span></button>
+                            <button type="button" class="btn isSatisfaction-btn notSatisfaction-color"><i class="fa fa-frown-o" aria-hidden="true"></i><span>不满意</span></button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">送礼物:</label>
+                        <div class="col-lg-6 col-md-8 col-xs-8">
+                            <ul class="gift-data">
+                                <li></li> 
+                                <li></li> 
+                                <li></li> 
+                                <li></li> 
+
+                                <li></li> 
+                                <li></li> 
+                                <li></li> 
+                                <li></li> 
+                            </ul>
+                        </div>
+                    </div>
+             
+
+                    <div class="form-group">
+                        <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">服务建议:</label>
+                        <div class="col-lg-8 col-md-8 col-xs-8">
+                                <div class="textareaNum">
+                                    <textarea style="resize:none;" placeholder="如果您对我的服务有更好的想发……"  class="form-control" rows="6"></textarea>
+                                    <span class="changenum">0/500</span>
+                                </div>
+                        </div>
+                    </div>
+                    
+
+                    
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-sm-offset-3 col-md-offset-3 col-xs-offset-2 col-lg-10 col-xs-10 col-md-8 col-sm-8 Process-foot">
+                            <button data-dismiss="modal" aria-label="Close" aria-hidden="true" style="margin-right:20px" type="botton" class="btn btn-default pull-right">取消</button>
+                            <button type="botton" class="btn btn-default pull-right evaluate-color">提交</button>
+                        </div>
+                    </div>
+                </form>
+        </div>
+      </div>
+    </div>
+
+
 </body>  
 </html>
 <script src="./js/jquery/jquery-1.11.3.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="./bootstrap/js/bootstrap.min.js"></script>
+<script src="./js/scrollbar.js"></script>
+<script src="./js/base.js"></script>
+<script src="./js/face.js"></script>
+
+<script>
+    // $("#evaluateModal").modal('show')
+    //调用表情插件
+    $('.chatArea', $('.chatCtn')).face({
+        src: 'src/',//表情包路径
+        rowNum: 5,//每行最多显示数量，此属性不适用于常用语
+        ctnAttr: ['0px', '20px', '40px', '40px'],//[left bottom width height] 表情框相对targetEl位置和里面的表情格子宽高  要写单位
+        triggerEl: $('.moodBtn', $('.chatCtn')),//触发按钮(不存在则自己生成，不要由a包裹)
+        targetEl: $('.chatBodyCtn', $('.chatCtn')),//父级参照物(用于appendTo和定位)
+        hideAdv: true,//是否隐藏广告
+        callback: function(data) {},
+    });
+
+    init();
+
+    $("#itSend").click(function(){
+        var context = $("#replyContent").val();
+        $("#chat-client").append(myReplyTemplay(context))
+        $("#replyContent").val('')
+    })
+
+
+    function myReplyTemplay(context) {
+       var tiem = new Date();
+       var templ = '<div class="chat-item chat-My">'+
+            '<div class="chI-time"><span>'+ tiem +'</span></div>'+
+            '<div class="My-context">'+
+                '<div class="head-logo"><img src="./img/robot.png"/></div>'+
+                '<div>'+
+                    '<div class="item-name">我</div>'+
+                    '<div class="item-context">'+ replaceFace(context) +'</div>'+
+                '</div>'+
+            '</div>'+
+        '</div>';
+       return templ;
+       
+    }
+
+    //转义表情
+    function replaceFace(data, bool) {
+        var src = 'src/',
+            faceType = ['云问表情', 'png', 'png'],
+            face = {//表情包
+            '云问表情': [
+                ['[微笑]', '/::)'],
+                ['[色]', '/::B'],
+                ['[得意]', '/:8-)'],
+                ['[流泪]', '/::<'],
+                ['[害羞]', '/::$'],
+                ['[闭嘴]', '/::X'],
+                ['[发怒]', '/::@'],
+                ['[呲牙]', '/::D'],
+                ['[惊讶]', '/::O'],
+                ['[难过]', '/::('],
+                ['[酷]', '/::+'],
+                ['[愉快]', '/:,@-D'],
+                ['[流汗]', '/::L'],
+                ['[奋斗]', '/:,@f'],
+                ['[疑问]', '/:?'],
+                ['[晕]', '/:,@@'],
+                ['[委屈]', '/:P-(']
+            ],
+        };
+        for(var i in face) {
+            if(i == faceType[0]) {
+                for(var j=0; j<face[i].length; j++) {//考虑到含有特殊字符，不用正则
+                    while(data.indexOf(face[i][j][0])+1) {
+                        var index = data.indexOf(face[i][j][0]),
+                            len = face[i][j][0].length,
+                            str1 = data.substr(0, index),
+                            str2 = data.substr(index+len);
+                        data = str1 + (bool?face[i][j][1]:('<img src="'+ src + j +'.'+ faceType[2] +'">')) + str2;
+                    }
+                    if(!bool) {
+                        while(data.indexOf(face[i][j][1])+1) {
+                            var index = data.indexOf(face[i][j][1]),
+                                len = face[i][j][1].length,
+                                str1 = data.substr(0, index),
+                                str2 = data.substr(index+len);
+                            data = str1 +'<img src="'+ src + j +'.'+ faceType[2] +'">'+ str2;
+                        }
+                    }
+                }
+            }
+        }
+        return data;
+    }
+    
+
+    function init() {
+        $('.chatClient').scrollbar({})
+    }
+
+</script>

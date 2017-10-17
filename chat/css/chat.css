@@ -3,6 +3,9 @@ body{
     margin: 0;
     padding: 0;
 }
+ul, li{
+    padding: 0px;
+}
 .input::-webkit-input-placeholder, {
     color: #B0B0B0;
 }
@@ -31,7 +34,20 @@ input::-ms-input-placeholder {
     border:1px solid #dddddd;
     border-top: none;
     margin-bottom: 15px;
-    min-height: 375px;
+    min-height: 374px;
+    max-height: 374px;
+    overflow: hidden;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -o-box-sizing: content-box;
+    -ms-box-sizing: content-box;
+    box-sizing: content-box;
+    position: relative;
+}
+.chatClient{
+    position: absolute;
+    top: 0px;
+    width: 95%;
 }
 #chat-context{
 
@@ -107,6 +123,7 @@ input::-ms-input-placeholder {
 .chat-operation{
     height: 20px;
     margin-bottom: 20px;
+    position: relative
 }
 
 .chat-operation i{
@@ -203,6 +220,7 @@ input::-ms-input-placeholder {
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis; 
     overflow: hidden;
+    cursor: pointer;
 }
 .serviceOC-foot {
     margin-top: 15px;
@@ -227,9 +245,10 @@ input::-ms-input-placeholder {
     margin-bottom: 20px;
 }
 .not-Con{
-    height: 113px;
-    margin-top: 10px;
-    margin: 0px 5px;  
+    height: 110px;
+    margin: 0px 5px;
+    margin-top: 23px;
+    margin-bottom: 47px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 6;
@@ -244,4 +263,218 @@ input::-ms-input-placeholder {
 }
 .not-foot div {
     display: inline-block;
+}
+
+
+
+/* 自助报账 */
+#accounting{
+    border:1px solid #ddd;
+    border-top: none;
+    padding: 20px;
+    padding-bottom: 103px;
+    margin-bottom: 34px;
+}
+
+.not-Weight{
+    font-weight: 100 !important;
+}
+
+.required-ico{
+    color:red;
+}
+.a-upload {
+    padding: 4px 10px;
+    height: 34px;
+    line-height: 23px;
+    position: relative;
+    cursor: pointer;
+    color: #888;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+.a-upload  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+.a-upload:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
+}
+
+
+#chat-modal{
+    padding: 20px 0px; 
+}
+.serve{
+    position: relative;
+}
+.serveProcess{
+    position: absolute;
+    right: 50px;
+}
+.process-round{
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    line-height: 44px;
+    text-align: center;
+    color: #ddd;
+    position: relative;
+}
+.serveProcess div{
+    float: left;
+}
+.crosswise{
+    width: 32px;
+    height: 1px;
+    background: #ddd;
+    margin: 23px 8px;
+}
+
+.processPass-color{
+    background: #54AAE8;
+}
+.roundPass-color{
+    border: 2px dashed #54AAE8;
+    color: #54AAE8;
+}
+
+.process-time{
+    width: 100px;
+    position: absolute;
+    top: 50px;
+    left: -26px;
+    line-height: 15px;
+    font-size: 12px;
+}
+
+.colorA4{
+    color:#A4A4A4;
+}
+#chatModal .page-header, #evaluateModal .page-header{
+    margin: 0px 20px 0px 80px;
+}
+.evaluate-btn{
+    background: #FEDFD3;
+    border: none;
+    color: #EA4B15;
+    border-radius: 20px;
+    margin-left: 10px; 
+}
+
+.Process-foot button{
+    margin-right:10px;
+}
+.evaluate-color{
+    background: #178DF1;
+    color: #fff;
+    border:none;
+}
+
+.evaluate-color:hover{
+    background: #49A9EE !important;
+    color: #fff;
+}
+
+.file-img{
+   width: 100px;
+   float: left;
+}
+.file-img span{
+    position: relative;
+    left:-10px;
+    top: 5px;
+}
+.detail{
+    position: relative;
+}
+.unsolved{
+    position: absolute;
+    right: -100px;
+    top: 20px;
+    border: 1px solid #3990D6;
+    color: #3990D6;
+    background: #fff;
+}
+
+.unsolved:hover{
+    color: #3990D6;
+}
+
+.isSatisfaction-btn{
+    border-radius: 20px;
+    border: 1px solid #3990D6;
+    background: #fff;
+    padding: 5px 8px;
+    margin-right: 10px; 
+}
+.isSatisfaction-btn i{
+    font-size: 25px;
+    margin-right: 10px;
+}
+.isSatisfaction-btn span{
+    margin: 0px 8px;
+    line-height: 12px;
+    position: relative;
+    top: -3px;
+}
+
+.Satisfaction-color{
+    background: #3990D6;
+    color: #fff;
+}
+
+.Satisfaction-color:hover{
+    background: #3990D6;
+    color: #fff;
+}
+
+.notSatisfaction-color:hover,::after{
+    background: #fff;
+    color: #3990D6;
+}
+
+.notSatisfaction-color{
+    background: #fff;
+    color: #3990D6;
+}
+
+.textareaNum{
+    position: relative;
+}
+.changenum{
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    color:#A4A4A4;
+}
+.gift-data{
+    display: inline-block;
+}
+
+.gift-data li{
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ddd;
+  list-style: none;
+  float: left;
+  margin-right: 40px; 
+  margin-bottom: 40px; 
+  cursor: pointer;
 }
