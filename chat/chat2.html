@@ -12,6 +12,8 @@
     <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/chat.css"/>
     <link rel="stylesheet" href="./css/face.css">
+    <link rel="stylesheet" href="./css/minichat.css">
+    
     <link href="https://cdn.bootcss.com/jquery.scrollbar/0.2.11/jquery.scrollbar.css" rel="stylesheet">
     
     
@@ -31,7 +33,11 @@
             <div class="tab-content">
                 <!-- 聊天 内容-->
                 <div role="tabpanel" class="tab-pane active chatCtn" id="client">
-                    <div id='chat-client'>
+                    <div class="scoll-reference">
+                        <div id='chat-client' class="scrollbar-macosx">
+                        </div>                            
+                    </div>
+                    <!-- <div id='chat-client' class="scrollbar-macosx">
                         <div class="chat-item">
                             <div class="chI-time"><span>10月16日 11:11:21</span></div>
                             <div class="chIndex-context">
@@ -52,39 +58,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="chat-item chat-My">
-                                        <div class="chI-time"><span>10月16日 11:11:21</span></div>
-                                        <div class="My-context">
-                                            <div class="head-logo"><img src='./img/robot.png'/></div>
-                                            <div class="">
-                                                <div class="item-name">我</div>
-                                                <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chat-item chat-My">
-                                            <div class="chI-time"><span>10月16日 11:11:21</span></div>
-                                            <div class="My-context">
-                                                <div class="head-logo"><img src='./img/robot.png'/></div>
-                                                <div class="">
-                                                    <div class="item-name">我</div>
-                                                    <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="chat-item chat-My">
-                                                <div class="chI-time"><span>10月16日 11:11:21</span></div>
-                                                <div class="My-context">
-                                                    <div class="head-logo"><img src='./img/robot.png'/></div>
-                                                    <div class="">
-                                                        <div class="item-name">我</div>
-                                                        <div class="item-context">很高兴为您服务，请问有什么能帮助到你的么？</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                    </div>
+                    </div> -->
                 
-
                     <div class="chat-operation chatBodyCtn">
                         <i class="fa fa-smile-o  moodBtn" aria-hidden="true"></i>
                         <i class="fa fa-scissors" aria-hidden="true"></i>
@@ -179,6 +154,7 @@
                 </div>
             </div>
         </div>
+        
 
         <div id="chat-menu pull-right" class="pull-right col-xs-3 col-sm-3 col-md-3 col-lg-3">
             <!-- 最近服务单 -->
@@ -253,7 +229,7 @@
 
         </div>
     </div> 
-    
+
     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#chatModal">Large modal</button> -->
     
     <div class="modal fade bs-example-modal-lg" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -440,7 +416,6 @@
       </div>
     </div>
 
-
 </body>  
 </html>
 <script src="./js/jquery/jquery-1.11.3.min.js"></script>
@@ -448,12 +423,13 @@
 <script src="./js/scrollbar.js"></script>
 <script src="./js/base.js"></script>
 <script src="./js/face.js"></script>
-<link href="https://cdn.bootcss.com/jquery.scrollbar/0.2.11/jquery.scrollbar.css" rel="stylesheet">
-<script src="https://cdn.bootcss.com/jquery.scrollbar/0.2.11/jquery.scrollbar.js"></script>
+<script src="./js/minichat.js"></script>
+<!-- <script src="https://cdn.bootcss.com/jquery.scrollbar/0.2.11/jquery.scrollbar.js"></script> -->
 <script>
-    var header = 0;
-    // $("#evaluateModal").modal('show')
-    //调用表情插件
+
+
+(function() {
+
     $('.chatArea', $('.chatCtn')).face({
         src: 'src/',//表情包路径
         rowNum: 5,//每行最多显示数量，此属性不适用于常用语
@@ -463,95 +439,152 @@
         hideAdv: true,//是否隐藏广告
         callback: function(data) {},
     });
-
-    init();
-
-    $("#itSend").click(function(){
-        var context = $("#replyContent").val();
-        $("#chat-client").append(myReplyTemplay(context))
-        $("#replyContent").val('')
-        $('#chat-client').scrollTop(header);
-    })
-
-
-    function myReplyTemplay(context) {
-       var tiem = new Date();
-       var templ = '<div class="chat-item chat-My">'+
-            '<div class="chI-time"><span>'+ tiem +'</span></div>'+
-            '<div class="My-context">'+
-                '<div class="head-logo"><img src="./img/robot.png"/></div>'+
-                '<div>'+
-                    '<div class="item-name">我</div>'+
-                    '<div class="item-context">'+ replaceFace(context) +'</div>'+
-                '</div>'+
-            '</div>'+
-        '</div>';
-       return templ;
-       
+    function ChatModel() {
+        // this.init()
     }
+    ChatModel.prototype = {
+        //初始化
+        init: function(){
+            var self = this;
+            //生成表情
+            $('.chatArea', $('.chatCtn')).face({
+                src: 'src/',//表情包路径
+                rowNum: 5,//每行最多显示数量，此属性不适用于常用语
+                ctnAttr: ['0px', '20px', '40px', '40px'],//[left bottom width height] 表情框相对targetEl位置和里面的表情格子宽高  要写单位
+                triggerEl: $('.moodBtn', $('.chatCtn')),//触发按钮(不存在则自己生成，不要由a包裹)
+                targetEl: $('.chatBodyCtn', $('.chatCtn')),//父级参照物(用于appendTo和定位)
+                hideAdv: true,//是否隐藏广告
+                callback: function(data) {},
+            });
 
-    //转义表情
-    function replaceFace(data, bool) {
-        var src = 'src/',
-            faceType = ['云问表情', 'png', 'png'],
-            face = {//表情包
-            '云问表情': [
-                ['[微笑]', '/::)'],
-                ['[色]', '/::B'],
-                ['[得意]', '/:8-)'],
-                ['[流泪]', '/::<'],
-                ['[害羞]', '/::$'],
-                ['[闭嘴]', '/::X'],
-                ['[发怒]', '/::@'],
-                ['[呲牙]', '/::D'],
-                ['[惊讶]', '/::O'],
-                ['[难过]', '/::('],
-                ['[酷]', '/::+'],
-                ['[愉快]', '/:,@-D'],
-                ['[流汗]', '/::L'],
-                ['[奋斗]', '/:,@f'],
-                ['[疑问]', '/:?'],
-                ['[晕]', '/:,@@'],
-                ['[委屈]', '/:P-(']
-            ],
-        };
-        for(var i in face) {
-            if(i == faceType[0]) {
-                for(var j=0; j<face[i].length; j++) {//考虑到含有特殊字符，不用正则
-                    while(data.indexOf(face[i][j][0])+1) {
-                        var index = data.indexOf(face[i][j][0]),
-                            len = face[i][j][0].length,
-                            str1 = data.substr(0, index),
-                            str2 = data.substr(index+len);
-                        data = str1 + (bool?face[i][j][1]:('<img src="'+ src + j +'.'+ faceType[2] +'">')) + str2;
+            FAQ = new Faqrobot({
+                logoUrl: 'robot/skin/chat2/images/logo_max.png',//logo地址 ----------
+                logoId: 'logo',
+                intelTitleChange: true,// 智能聊天是否修改标题
+                artiTitleChange: true,// 人工时是否修改标题
+                artiTitle: '人工客服',// 人工时的标题
+                robotInfo:'robotInfo',
+                kfPic: './img/robot.png',  //客服图标
+                khPic: './img/serv.png', //客户图标
+                formatDate: '%month%月%date%日 %hour%:%minute%:%second%',//配置时间格式(默认10:42:52 2016-06-24)
+                topQueId: 'commonQue',//热门、常见问题Id --------
+                quickServId: 'quickLink',//快捷服务Id
+                thirdUrlId:'thirdUrl',
+                chatCtnId: 'chat-client',//聊天展示Id y   --------------
+                inputCtnId: 'replyContent',//输入框Id y   --------
+                sendBtnId: 'itSend',//发送按钮Id y   ------
+                tipWordId: 'inputTip',
+                commentFormId: 'feedBackForm',//评论框formId -------
+                commentInputCtnId: 'feedBackInput',//评论输入框Id ----
+                commentSendBtnId: 'feedBackBtn',//评论发送按钮Id ---------
+                commentTipWordId: 'feedBackTip',//评论输入框提示语Id
+                artiSearchId: 'artiSearch',//智能搜索
+                artiSearchCallback: function(data) {
+                    if(data.fullTextSearch) {
+                        $('.thirdURL').addClass('thirdURLRecommend');
+                        $('.artiSearch').removeClass('artiSearchHide');
+                        $('.itemCtn').css('width', '25%');
+                        $('.itemHead4').trigger('click');
+                    }else {
+                        $('.artiSearch').addClass('artiSearchHide');
+                        if($('.thirdURL').hasClass('thirdURLRecommend')){
+                            //存在推荐链接
+                            $('.itemCtn').removeAttr('style');
+                        }
+                        if($('.itemHead4').is('.itemHeadFocus')) {
+                            $('.itemHead1').trigger('click');
+                        }else {
+                            $('#artiSearch').hide();
+                        }
                     }
-                    if(!bool) {
-                        while(data.indexOf(face[i][j][1])+1) {
-                            var index = data.indexOf(face[i][j][1]),
-                                len = face[i][j][1].length,
+
+                },
+                leaveQue: {// 未知问题已回复
+                    open: true,//是否启用功能
+                },
+                autoSkip: {//手机不能访问pc页面
+                    open: true,//是否启用功能
+                    chatUrl: 'h5chat',// 默认跳转的页面
+                },
+                clearBtnId: 'clearMsg',//清除按钮Id
+                closeBtnId: 'close',//关闭聊天页面
+                // faceModule: {//表情模块
+                //     open: true,//是否启用功能
+                //     faceObj: Face,//表情插件实例
+                // },
+                poweredCtnId: 'power',//技术支持Id
+                thirdUrlCallBack:function(data,index){
+                    if(!index)index=0;
+                    if(data.robotAnswer[index].thirdUrl && data.robotAnswer[index].thirdUrl.url){
+                        $('.thirdURL').removeClass('thirdURLRecommend');
+                        $('.itemHead5').trigger('click');
+                        $('.itemCtn').css('width', '25%');
+                        if(!$('.artiSearch').hasClass('artiSearchHide')){
+                            $('.artiSearch').addClass('artiSearchHide')
+                        }
+                        $('#'+ FAQ.options.thirdUrlId+' iframe').attr('src',data.robotAnswer[index].thirdUrl.url);
+                    }else{
+                        $('.thirdURL').addClass('thirdURLRecommend');
+                        $('.itemCtn').removeAttr('style');
+                        $('.itemHead1').trigger('click');
+                    };
+                }
+            });
+        },
+        //转义表情
+        replaceFace: function (data, bool) {
+            var src = 'src/',
+                faceType = ['云问表情', 'png', 'png'],
+                face = {//表情包
+                '云问表情': [
+                    ['[微笑]', '/::)'],
+                    ['[色]', '/::B'],
+                    ['[得意]', '/:8-)'],
+                    ['[流泪]', '/::<'],
+                    ['[害羞]', '/::$'],
+                    ['[闭嘴]', '/::X'],
+                    ['[发怒]', '/::@'],
+                    ['[呲牙]', '/::D'],
+                    ['[惊讶]', '/::O'],
+                    ['[难过]', '/::('],
+                    ['[酷]', '/::+'],
+                    ['[愉快]', '/:,@-D'],
+                    ['[流汗]', '/::L'],
+                    ['[奋斗]', '/:,@f'],
+                    ['[疑问]', '/:?'],
+                    ['[晕]', '/:,@@'],
+                    ['[委屈]', '/:P-(']
+                ],
+            };
+            for(var i in face) {
+                if(i == faceType[0]) {
+                    for(var j=0; j<face[i].length; j++) {//考虑到含有特殊字符，不用正则
+                        while(data.indexOf(face[i][j][0])+1) {
+                            var index = data.indexOf(face[i][j][0]),
+                                len = face[i][j][0].length,
                                 str1 = data.substr(0, index),
                                 str2 = data.substr(index+len);
-                            data = str1 +'<img src="'+ src + j +'.'+ faceType[2] +'">'+ str2;
+                            data = str1 + (bool?face[i][j][1]:('<img src="'+ src + j +'.'+ faceType[2] +'">')) + str2;
+                        }
+                        if(!bool) {
+                            while(data.indexOf(face[i][j][1])+1) {
+                                var index = data.indexOf(face[i][j][1]),
+                                    len = face[i][j][1].length,
+                                    str1 = data.substr(0, index),
+                                    str2 = data.substr(index+len);
+                                data = str1 +'<img src="'+ src + j +'.'+ faceType[2] +'">'+ str2;
+                            }
                         }
                     }
                 }
             }
+            return data;
         }
-        return data;
-    }
-    
-
-    function init() {
-        $('#chat-client').scrollbar();
-        jQuery('#chat-client').scrollbar({
-            "onScroll": function(y, x){
-                // console.log(y,x)
-                header = y.size;
-                if(y.scroll == y.maxScroll){
-                    console.log('Scrolled to bottom');
-                }
-            }
-        });
     }
 
+    var ChatModel = new ChatModel();
+
+
+   
+}())
 </script>

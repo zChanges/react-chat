@@ -29,21 +29,37 @@ input::-ms-input-placeholder {
     left: 16%;
     font-size: 13px; 
 }
+#client {
+    /* position: relative; */
+}
 #chat-client {
-    padding: 20px;
+    /* padding: 20px 20px; */
+    /* position: relative; */
+}
+.scoll-reference{
+    position: relative;
+    padding: 20px 20px;
+    border:1px solid #dddddd !important;
+    border-top: none !important;
+    height: 414px;
+}
+.scrollbar-macosx{
+    /* height: 414px !important;
     border:1px solid #dddddd !important;
     border-top: none !important;
     margin-bottom: 15px !important;
-    /* min-height: 200px; */
-    max-height: 304px;
-    overflow: hidden;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     -o-box-sizing: content-box;
     -ms-box-sizing: content-box;
     box-sizing: content-box;
-    position: relative;
+    overflow: hidden;
+    overflow-x: hidden;
+    padding: 0px 20px !important; */
+    padding: 20px 20px;
+    width: 100%;
 }
+
 .chatClient{
     position: absolute;
     top: 0px;
@@ -123,7 +139,8 @@ input::-ms-input-placeholder {
 .chat-operation{
     height: 20px;
     margin-bottom: 20px;
-    position: relative
+    position: relative;
+    line-height: 50px;
 }
 
 .chat-operation i{
@@ -272,7 +289,7 @@ input::-ms-input-placeholder {
     border:1px solid #ddd;
     border-top: none;
     padding: 20px;
-    padding-bottom: 103px;
+    padding-bottom: 75px;
     margin-bottom: 34px;
 }
 

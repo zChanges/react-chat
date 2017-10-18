@@ -250,8 +250,8 @@
             var This = this;
 
             //调用滚动插件(表情框)
-            // This.obj.scrollbar = This.$obj.$FA_ScrollCtn.scrollbar({
-            // });
+            This.obj.scrollbar = This.$obj.$FA_ScrollCtn.scrollbar({
+            });
             This.$obj.$FA_tipScrollCtn.hide();//调用滚动插件后才能隐藏
 
             //选择表情

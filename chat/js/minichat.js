@@ -1208,7 +1208,7 @@
 
         Face.prototype = {
             init: function() {
-            	this.variable();//声明变量
+            	// this.variable();//声明变量
             	if(this.options.open) {
             		this.baseProp();//$el的基础属性
             		this.baseEl();//生成外边框
@@ -1641,8 +1641,8 @@
 
         				This.$obj.$FA_backCtn.stop().show();
 
-        				This.obj.scrollbar.update();
-        				This.obj.scrollbar.scrollTo('top');
+        				// This.obj.scrollbar.update();
+        				// This.obj.scrollbar.scrollTo('top');
 
         				//显示后才能获取top
         				This.obj.top1 = 0;
@@ -1904,11 +1904,32 @@
                 kfPic: '',  //客服图标
                 khPic: '', //客户图标
                 kfHtml: [
+					// '<div class="chat-item">'+
+					// 	'<div class="chI-time"><span>%formatDate%</span></div>'+
+					// 	'<div class="chIndex-context">'+
+					// 		'<div class="head-logo"><img src="%kfPic%"/></div>'+
+					// 		'<div class="">'+
+					// 			'<div class="item-name">%robotName%</div>'+
+					// 			'<div class="item-context">%helloWord%</div>'+
+					// 		'</div>'+
+					// 	'</div>'+
+					// '</div>',
                     '<div class="MN_answer_welcome MN_answer"><div class="MN_kftime">%formatDate%</div><div class="MN_kfName">%robotName%</div><div class="MN_kfCtn"><img class="MN_kfImg" src="%kfPic%"><i class="MN_kfTriangle1 MN_triangle"></i><i class="MN_kfTriangle2 MN_triangle"></i>%helloWord%</div></div>',//欢迎语组合
                     '<div class="MN_helpful"><span class="MN_reasonSend">提交</span><span class="MN_yes">满意</span><span class="MN_no">不满意</span></div>',//是否满意组合
                     '<div class="MN_answer" aId="%aId%" cluid="%cluid%"><div class="MN_kftime">%formatDate%</div><div class="MN_kfName">%robotName%</div><div class="MN_kfCtn"><img class="MN_kfImg" src="%kfPic%"><i class="MN_kfTriangle1 MN_triangle"></i><i class="MN_kfTriangle2 MN_triangle"></i>%ansCon%%gusListHtml%%relateListHtml%%commentHtml%</div></div>'//回答组合
                 ],//客服结构(所有的属性和%xxx%都必须存在)
-                khHtml: '<div class="MN_ask"><div class="MN_khtime">%formatDate%</div><div class="MN_khName">我</div><div class="MN_khCtn"><img class="MN_khImg" src="%khPic%"><i class="MN_khTriangle1 MN_triangle"></i><i class="MN_khTriangle2 MN_triangle"></i>%askWord%</div></div>',//客户结构
+				khHtml: 
+				// '<div class="chat-item chat-My">'+
+				// 	'<div class="chI-time"><span>%formatDate%</span></div>'+
+				// 	'<div class="My-context">'+
+				// 		'<div class="head-logo"><img src="%khPic%"/></div>'+
+				// 		'<div>'+
+				// 			'<div class="item-name">我</div>'+
+				// 			'<div class="item-context">%askWord%</div>'+
+				// 		'</div>'+
+				// 	'</div>'+
+				// '</div>',
+				'<div class="MN_ask"><div class="MN_khtime">%formatDate%</div><div class="MN_khName">我</div><div class="MN_khCtn"><img class="MN_khImg" src="%khPic%"><i class="MN_khTriangle1 MN_triangle"></i><i class="MN_khTriangle2 MN_triangle"></i>%askWord%</div></div>',//客户结构
                 formatDate: '%hour%:%minute%:%second% %year%-%month%-%date%',//配置时间格式(默认10:42:52 2016-06-24)
                 topQueId: 'topQueId',//热门、常见问题Id
                 newQueId: 'newQueId',//新增问题Id
@@ -1925,7 +1946,7 @@
     			inputCtnId: 'inputCtnId',//输入框Id
     			sendBtnId: 'sendBtnId',//发送按钮Id
                 tipWordId: 'tipWordId',//输入框提示语Id
-                tipWord: '请输入您要咨询的问题',//输入框提示语
+                tipWord: "你可以尝试输入类似'美信登陆不成功'、'mip显示异常' 等问题。",//输入框提示语
                 remainWordId: 'remainWordId',
                 remainWordNum: '100',
                 commentFormId: 'commentFormId',//评论框formId
@@ -2380,8 +2401,8 @@
             		$webNameId = this.$obj.$webNameId = $('#'+ this.options.webNameId),
             		$webInfoId = this.$obj.$webInfoId = $('#'+ this.options.webInfoId);
 
-                this.robot.kfPic = data.skinConfig ? data.skinConfig.kfPic : this.options.prefix+this.options.kfPic,//客服图标
-                this.robot.khPic = data.skinConfig ? data.skinConfig.khPic : this.options.prefix+this.options.khPic;//客户图标
+                this.robot.kfPic = data.skinConfig ? data.skinConfig.kfPic : this.options.kfPic,//客服图标
+                this.robot.khPic = data.skinConfig ? data.skinConfig.khPic : this.options.khPic;//客户图标
             	$logoId.attr({'src': data.webConfig.logoUrl || this.options.prefix+this.options.logoUrl});
         		$webNameId.text(data.webConfig.webName || this.options.webName);
         		$webInfoId.text(MN_Base.addDots($.trim(MN_Base.getPlainText(data.webConfig.info || this.options.webInfo)), 20));	
@@ -2752,13 +2773,23 @@
     					}
     				}
             	});
-            },
+			},
+			// 获取底部位置
+			getBottom: function() {
+				var header = 0;
+				$('.scrollbar-macosx').scrollbar({
+					"onScroll": function(y, x){
+						header = y.size;
+					}
+				});
+				return header;
+			},
             //发送问题->s=aq
             askQue: function(queParam) {
 				var This = this,
                     question =queParam || This.robot._html || This.$obj.$inputCtnId.val().replace(/\n+/g, '');//// 当 This.robot._html不为空时 或者 从Url中传入问题时 ，走模拟问题
                   
-        	    This.scrollbar.options.autoBottom = true;// 恢复自动滚动到底部
+				This.scrollbar.options.autoBottom = true;// 恢复自动滚动到底部
                 if(question) {//问题不为空
                     This.options.sendCallback(question);//点击发送按钮的回调
                     if(question.indexOf('%我要发文件%')+1) {//发文件
@@ -2814,7 +2845,7 @@
                     	}
                     }
                     This.robot.html = This.robot._html = '';
-                    This.$obj.$inputCtnId.val('');//清空输入框
+					This.$obj.$inputCtnId.val('');//清空输入框
                     $(document).trigger('keyup');
                 }
             },
