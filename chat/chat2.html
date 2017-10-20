@@ -14,9 +14,6 @@
     <link rel="stylesheet" href="./css/face.css">
     <link rel="stylesheet" href="./css/minichat.css">
     
-    <link href="https://cdn.bootcss.com/jquery.scrollbar/0.2.11/jquery.scrollbar.css" rel="stylesheet">
-    
-    
     <!--[if lt IE 9]>
         <script src="./js/html5shiv.min.js"></script>
         <script src="./js/respond.min.js"></script>
@@ -33,7 +30,7 @@
             <div class="tab-content">
                 <!-- 聊天 内容-->
                 <div role="tabpanel" class="tab-pane active chatCtn" id="client">
-                    <div class="scoll-reference">
+                    <div class="scoll-reference radius">
                         <div id='chat-client' class="scrollbar-macosx">
                         </div>                            
                     </div>
@@ -60,23 +57,23 @@
                         </div>
                     </div> -->
                 
-                    <div class="chat-operation chatBodyCtn">
+                    <div class="chat-operation chatBodyCtn hide">
                         <i class="fa fa-smile-o  moodBtn" aria-hidden="true"></i>
-                        <i class="fa fa-scissors" aria-hidden="true"></i>
+                        <i class="fa fa-scissors screenBtn" aria-hidden="true"></i>
                         <i class="fa fa-folder-o" aria-hidden="true"></i> 
                     </div>
 
-                    <div class="client-bootom">
-                        <textarea id="replyContent" class="chatArea" placeholder="你可以尝试输入类似'美信登陆不成功'、'mip显示异常' 等问题。"></textarea>
+                    <div class="client-bootom inputCtn radius">
+                        <textarea id="replyContent" class="chatArea input" placeholder="你可以尝试输入类似'美信登陆不成功'、'mip显示异常' 等问题。"></textarea>
                         <button class="bootom-btn pull-right btn-send" id="itSend">发送</button>
-                        <button class="bootom-btn pull-right btn-out">退出人工服务</button>
+                        <button class="bootom-btn pull-right btn-out hide outWork">退出人工服务</button>
                     </div>
                     
-                    <div class="chat-hint">机器人无法解决？<a>转人工服务</a></div>
+                    <div class="chat-hint">机器人无法解决？<a id="switchHuman">转人工服务</a></div>
                 </div>
 
                 <!-- 自助报账 -->
-                <div role="tabpanel" class="tab-pane" id="accounting">
+                <div role="tabpanel" class="tab-pane radius" id="accounting">
 
                     <form class="form-horizontal">
                         <div class="form-group">
@@ -169,7 +166,7 @@
                     </div>
                 </div>
 
-                <div class="serviceO-Context">
+                <div class="serviceO-Context radius">
                     <div class="serviceOC-titl">
                         <div>单号:<b>123456789</b></div>
                         <div class="pull-right state">处理中</div>
@@ -184,7 +181,7 @@
                     </div>
                 </div>
 
-                <div class="serviceO-Context">
+                <div class="serviceO-Context radius">
                     <div class="serviceOC-titl">
                         <div>单号:<b>123456789</b></div>
                         <div class="pull-right state">处理中</div>
@@ -195,7 +192,20 @@
 
                     <div class="serviceOC-foot">
                         <div class="item state">2017-10-25</div>
-                        <div class="pull-right gray">催单</div>
+                        <div class="pull-right gray expediteOrder">
+                                催单
+                                <div class="expediteModel radius hide">
+                                    <span class="expedite-assign"></span>
+                                    <div class="expedite-content">
+                                        该工单已被催单<span class="red">0</span>次，请确认是否要催单?
+                                    </div>
+                                    <div class="expedite-foot">
+                                        <button type="botton" class="btn btn-default pull-right expedite-close">暂不需要</button>
+                                        <button type="botton" class="btn btn-primary pull-right evaluate-color evaluateOrderFn" style="margin-right:20px">我要催单</button>
+                                    </div>
+                                </div>
+                        </div>
+                    
                     </div>
                 </div>
 
@@ -225,7 +235,6 @@
                     </div>
 
             </div>
-
 
         </div>
     </div> 
@@ -379,15 +388,34 @@
                         <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">送礼物:</label>
                         <div class="col-lg-6 col-md-8 col-xs-8">
                             <ul class="gift-data">
-                                <li></li> 
-                                <li></li> 
-                                <li></li> 
-                                <li></li> 
-
-                                <li></li> 
-                                <li></li> 
-                                <li></li> 
-                                <li></li> 
+                                <li class="present">
+                                    <img title="矿泉水" src='./img/water.jpg'/>
+                                    <span class="present-box">
+                                        <span class="present-check"></span>
+                                        <i class="fa fa-check-circle-o present-ico" aria-hidden="true"></i>
+                                    </span>
+                                </li> 
+                                <li class="present">
+                                    <img title="巧克力" src='./img/chocolate.jpg'/>
+                                    <span class="present-box">
+                                        <span class="present-check"></span>
+                                        <i class="fa fa-check-circle-o present-ico" aria-hidden="true"></i>
+                                    </span>
+                                </li> 
+                                <li class="present">
+                                    <img title='鲜花' src='./img/flower.jpg'/>
+                                    <span class="present-box">
+                                        <span class="present-check"></span>
+                                        <i class="fa fa-check-circle-o present-ico" aria-hidden="true"></i>
+                                    </span>
+                                </li> 
+                                <li class="present">
+                                    <img title="香槟" src='./img/champagne.jpg'/>
+                                    <span class="present-box">
+                                        <span class="present-check"></span>
+                                        <i class="fa fa-check-circle-o present-ico" aria-hidden="true"></i>
+                                    </span>
+                                </li> 
                             </ul>
                         </div>
                     </div>
@@ -416,175 +444,48 @@
       </div>
     </div>
 
+    <div class="modal fade bs-example-modal-lg" id="opinion" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document" style="width:600px;" >
+            <div class="modal-content" id="chat-modal">
+                    <form class="form-horizontal">
+
+                        <div class="form-group">
+                            <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10 col-lg-offset-1 col-xs-offset-1">
+                                <label><h2><b>提交意见</b></h2></label>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                
+                                <div class="textareaNum" style="margin-top:20px;">
+                                    <textarea style="resize:none;" placeholder="烦请写下您对本次服务不满意的地方和原因，我们会接纳并改善！"  class="form-control" rows="6"></textarea>
+                                    <span class="changenum">0/500</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-lg-offset-1 col-sm-offset-3 col-md-offset-3 col-xs-offset-1 col-lg-10 col-xs-10 col-md-8 col-sm-8">
+                                <button data-dismiss="modal" aria-label="Close" aria-hidden="true" type="botton" class="btn btn-default pull-right">取消</button>
+                                <button type="botton" class="btn btn-default pull-right evaluate-color" style="margin-right:20px">提交</button>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    
+
+
+
 </body>  
 </html>
 <script src="./js/jquery/jquery-1.11.3.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
 <script src="./bootstrap/js/bootstrap.min.js"></script>
 <script src="./js/scrollbar.js"></script>
 <script src="./js/base.js"></script>
 <script src="./js/face.js"></script>
 <script src="./js/minichat.js"></script>
-<!-- <script src="https://cdn.bootcss.com/jquery.scrollbar/0.2.11/jquery.scrollbar.js"></script> -->
+<script src="./js/niuniucapture.js"></script>
+<script src="./js/appChat.js"></script>
 <script>
-
-
-(function() {
-
-    $('.chatArea', $('.chatCtn')).face({
-        src: 'src/',//表情包路径
-        rowNum: 5,//每行最多显示数量，此属性不适用于常用语
-        ctnAttr: ['0px', '20px', '40px', '40px'],//[left bottom width height] 表情框相对targetEl位置和里面的表情格子宽高  要写单位
-        triggerEl: $('.moodBtn', $('.chatCtn')),//触发按钮(不存在则自己生成，不要由a包裹)
-        targetEl: $('.chatBodyCtn', $('.chatCtn')),//父级参照物(用于appendTo和定位)
-        hideAdv: true,//是否隐藏广告
-        callback: function(data) {},
-    });
-    function ChatModel() {
-        // this.init()
-    }
-    ChatModel.prototype = {
-        //初始化
-        init: function(){
-            var self = this;
-            //生成表情
-            $('.chatArea', $('.chatCtn')).face({
-                src: 'src/',//表情包路径
-                rowNum: 5,//每行最多显示数量，此属性不适用于常用语
-                ctnAttr: ['0px', '20px', '40px', '40px'],//[left bottom width height] 表情框相对targetEl位置和里面的表情格子宽高  要写单位
-                triggerEl: $('.moodBtn', $('.chatCtn')),//触发按钮(不存在则自己生成，不要由a包裹)
-                targetEl: $('.chatBodyCtn', $('.chatCtn')),//父级参照物(用于appendTo和定位)
-                hideAdv: true,//是否隐藏广告
-                callback: function(data) {},
-            });
-
-            FAQ = new Faqrobot({
-                logoUrl: 'robot/skin/chat2/images/logo_max.png',//logo地址 ----------
-                logoId: 'logo',
-                intelTitleChange: true,// 智能聊天是否修改标题
-                artiTitleChange: true,// 人工时是否修改标题
-                artiTitle: '人工客服',// 人工时的标题
-                robotInfo:'robotInfo',
-                kfPic: './img/robot.png',  //客服图标
-                khPic: './img/serv.png', //客户图标
-                formatDate: '%month%月%date%日 %hour%:%minute%:%second%',//配置时间格式(默认10:42:52 2016-06-24)
-                topQueId: 'commonQue',//热门、常见问题Id --------
-                quickServId: 'quickLink',//快捷服务Id
-                thirdUrlId:'thirdUrl',
-                chatCtnId: 'chat-client',//聊天展示Id y   --------------
-                inputCtnId: 'replyContent',//输入框Id y   --------
-                sendBtnId: 'itSend',//发送按钮Id y   ------
-                tipWordId: 'inputTip',
-                commentFormId: 'feedBackForm',//评论框formId -------
-                commentInputCtnId: 'feedBackInput',//评论输入框Id ----
-                commentSendBtnId: 'feedBackBtn',//评论发送按钮Id ---------
-                commentTipWordId: 'feedBackTip',//评论输入框提示语Id
-                artiSearchId: 'artiSearch',//智能搜索
-                artiSearchCallback: function(data) {
-                    if(data.fullTextSearch) {
-                        $('.thirdURL').addClass('thirdURLRecommend');
-                        $('.artiSearch').removeClass('artiSearchHide');
-                        $('.itemCtn').css('width', '25%');
-                        $('.itemHead4').trigger('click');
-                    }else {
-                        $('.artiSearch').addClass('artiSearchHide');
-                        if($('.thirdURL').hasClass('thirdURLRecommend')){
-                            //存在推荐链接
-                            $('.itemCtn').removeAttr('style');
-                        }
-                        if($('.itemHead4').is('.itemHeadFocus')) {
-                            $('.itemHead1').trigger('click');
-                        }else {
-                            $('#artiSearch').hide();
-                        }
-                    }
-
-                },
-                leaveQue: {// 未知问题已回复
-                    open: true,//是否启用功能
-                },
-                autoSkip: {//手机不能访问pc页面
-                    open: true,//是否启用功能
-                    chatUrl: 'h5chat',// 默认跳转的页面
-                },
-                clearBtnId: 'clearMsg',//清除按钮Id
-                closeBtnId: 'close',//关闭聊天页面
-                // faceModule: {//表情模块
-                //     open: true,//是否启用功能
-                //     faceObj: Face,//表情插件实例
-                // },
-                poweredCtnId: 'power',//技术支持Id
-                thirdUrlCallBack:function(data,index){
-                    if(!index)index=0;
-                    if(data.robotAnswer[index].thirdUrl && data.robotAnswer[index].thirdUrl.url){
-                        $('.thirdURL').removeClass('thirdURLRecommend');
-                        $('.itemHead5').trigger('click');
-                        $('.itemCtn').css('width', '25%');
-                        if(!$('.artiSearch').hasClass('artiSearchHide')){
-                            $('.artiSearch').addClass('artiSearchHide')
-                        }
-                        $('#'+ FAQ.options.thirdUrlId+' iframe').attr('src',data.robotAnswer[index].thirdUrl.url);
-                    }else{
-                        $('.thirdURL').addClass('thirdURLRecommend');
-                        $('.itemCtn').removeAttr('style');
-                        $('.itemHead1').trigger('click');
-                    };
-                }
-            });
-        },
-        //转义表情
-        replaceFace: function (data, bool) {
-            var src = 'src/',
-                faceType = ['云问表情', 'png', 'png'],
-                face = {//表情包
-                '云问表情': [
-                    ['[微笑]', '/::)'],
-                    ['[色]', '/::B'],
-                    ['[得意]', '/:8-)'],
-                    ['[流泪]', '/::<'],
-                    ['[害羞]', '/::$'],
-                    ['[闭嘴]', '/::X'],
-                    ['[发怒]', '/::@'],
-                    ['[呲牙]', '/::D'],
-                    ['[惊讶]', '/::O'],
-                    ['[难过]', '/::('],
-                    ['[酷]', '/::+'],
-                    ['[愉快]', '/:,@-D'],
-                    ['[流汗]', '/::L'],
-                    ['[奋斗]', '/:,@f'],
-                    ['[疑问]', '/:?'],
-                    ['[晕]', '/:,@@'],
-                    ['[委屈]', '/:P-(']
-                ],
-            };
-            for(var i in face) {
-                if(i == faceType[0]) {
-                    for(var j=0; j<face[i].length; j++) {//考虑到含有特殊字符，不用正则
-                        while(data.indexOf(face[i][j][0])+1) {
-                            var index = data.indexOf(face[i][j][0]),
-                                len = face[i][j][0].length,
-                                str1 = data.substr(0, index),
-                                str2 = data.substr(index+len);
-                            data = str1 + (bool?face[i][j][1]:('<img src="'+ src + j +'.'+ faceType[2] +'">')) + str2;
-                        }
-                        if(!bool) {
-                            while(data.indexOf(face[i][j][1])+1) {
-                                var index = data.indexOf(face[i][j][1]),
-                                    len = face[i][j][1].length,
-                                    str1 = data.substr(0, index),
-                                    str2 = data.substr(index+len);
-                                data = str1 +'<img src="'+ src + j +'.'+ faceType[2] +'">'+ str2;
-                            }
-                        }
-                    }
-                }
-            }
-            return data;
-        }
-    }
-
-    var ChatModel = new ChatModel();
-
-
-   
-}())
+//    $("#opinion").modal('evaluateModal')
 </script>

@@ -28,6 +28,9 @@ input::-ms-input-placeholder {
     padding: 15px 20px;
     left: 16%;
     font-size: 13px; 
+    -moz-box-shadow: 1px 1px 10px 5px #E0E0E0;/* 老的 Firefox */
+    box-shadow: 1px 1px 10px 5px #E0E0E0;
+    border-radius: 8px;
 }
 #client {
     /* position: relative; */
@@ -39,7 +42,6 @@ input::-ms-input-placeholder {
 .scoll-reference{
     position: relative;
     padding: 20px 20px;
-    border:1px solid #dddddd !important;
     border-top: none !important;
     height: 414px;
 }
@@ -140,7 +142,8 @@ input::-ms-input-placeholder {
     height: 20px;
     margin-bottom: 20px;
     position: relative;
-    line-height: 50px;
+    line-height: 40px;
+    top: 7px;
 }
 
 .chat-operation i{
@@ -152,8 +155,8 @@ input::-ms-input-placeholder {
 
 .client-bootom{
     min-height: 140px;
-    border:1px solid #ddd;
     margin-top: 25px;
+    position: relative;
 }
 
 .client-bootom textarea{
@@ -184,7 +187,7 @@ input::-ms-input-placeholder {
 }
 
 .chat-hint{
-    margin: 15px 0px 1px 10px;
+    margin: 15px 0px 1px 20px;
 }
 .chat-hint a{
     color: #3B97E5 !important;
@@ -203,6 +206,9 @@ input::-ms-input-placeholder {
     color:#ABABAB;
     float: right;
 }
+.serviceO-page i{
+    cursor: pointer;
+}
 .serviceO-title{
     margin-bottom: 10px;
 }
@@ -217,7 +223,6 @@ input::-ms-input-placeholder {
     display: inline-block;
 }
 .serviceO-Context{
-    border: 1px solid #ddd;
     padding: 15px;
     margin-bottom: 20px;
 }
@@ -260,6 +265,7 @@ input::-ms-input-placeholder {
     border: 1px solid #ddd;
     padding: 15px;
     margin-bottom: 20px;
+    border-radius: 6px;
 }
 .not-Con{
     height: 110px;
@@ -286,11 +292,12 @@ input::-ms-input-placeholder {
 
 /* 自助报账 */
 #accounting{
-    border:1px solid #ddd;
+    /* border:1px solid #ddd; */
     border-top: none;
     padding: 20px;
     padding-bottom: 75px;
     margin-bottom: 34px;
+    /* border-radius: 6px; */
 }
 
 .not-Weight{
@@ -492,6 +499,81 @@ input::-ms-input-placeholder {
   list-style: none;
   float: left;
   margin-right: 40px; 
-  margin-bottom: 40px; 
   cursor: pointer;
+}
+
+.gift-data li img{
+    height: 100%;
+}
+.radius{
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.present{
+    position: relative;
+}
+.present-box{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.present-check{
+    background: #000;
+    opacity: 0.6;
+    height: 100%;
+    display: block;
+}
+.present-ico{
+    position: absolute;
+    right: 13px;
+    top: 0px;
+    color: #3990D6;
+    font-size: 25px;
+    line-height: 47px;
+    margin-left: 15px;
+}
+/* .nav-tabs{
+    border-radius: 6px;
+} */
+
+.expediteOrder{
+    position: relative;
+}
+.expediteModel{
+    padding: 15px 20px;
+    width: 300px;
+    position: absolute;
+    top: 30px;
+    left: -12px;
+    background: #fff;
+    z-index: 666;
+    box-shadow: 1px 1px 5px 2px #E0E0E0; 
+}
+.expedite-content{
+    width: 250px;
+    padding: 10px 0px 30px 0px;
+    text-align: center;
+    color: #767676;
+}
+
+.expedite-foot{
+    margin-left: 45px;
+}
+
+.expedite-assign{
+    position: absolute;
+    top: -13px;
+    left: 16px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 12px solid #fff;
+}
+.red{
+    color:red;
 }
