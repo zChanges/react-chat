@@ -57,10 +57,10 @@
                         </div>
                     </div> -->
                 
-                    <div class="chat-operation chatBodyCtn hide">
+                    <div class="chat-operation chatBodyCtn">
                         <i class="fa fa-smile-o  moodBtn" aria-hidden="true"></i>
-                        <i class="fa fa-scissors screenBtn" aria-hidden="true"></i>
-                        <i class="fa fa-folder-o" aria-hidden="true"></i> 
+                        <i class="fa fa-scissors screenBtn hide" aria-hidden="true"></i>
+                        <i class="fa fa-folder-o hide" aria-hidden="true"></i> 
                     </div>
 
                     <div class="client-bootom inputCtn radius">
@@ -100,12 +100,12 @@
 
                         <div class="form-group">
                             <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label">附件</label>
-                            <div class="col-lg-10 col-md-9">
+                            <div class="col-lg-8 col-md-7">
                                 <!-- <input type="file" class="upload-btn"/> -->
                                 <a class="a-upload">
                                     <input type="file" name="" id="">上传文件
                                 </a>
-                                <span style="margin-left:10px; position: relative; top: -12px;" class="state">文件不得超过5M，支持以下格式：office、txt、bmp、rar、zip</span>
+                                <span style="margin-left:10px; position: absolute; top: 8px;" class="state">文件不得超过5M，支持以下格式：office、txt、bmp、rar、zip</span>
                             </div>
                         </div>
 
@@ -161,53 +161,56 @@
                     <div class="">最近服务单</div>
                     <div class="serviceO-page">
                         <span class="pageNum">1/4</span>
-                        <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                        <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                        <i class="fa fa-chevron-circle-left servicePagePre"  aria-hidden="true"></i>
+                        <i class="fa fa-chevron-circle-right servicePageNext" aria-hidden="true"></i>
                     </div>
                 </div>
 
-                <div class="serviceO-Context radius">
-                    <div class="serviceOC-titl">
-                        <div>单号:<b>123456789</b></div>
-                        <div class="pull-right state">处理中</div>
-                    </div>
-                    <div class="serviceOC-context"  data-toggle="modal" data-target="#chatModal">
-                        账户：123你好！ 我们部长的账号登陆不理哦啊手机没响，换手机也没用换手机也没用换手机也没用
-                    </div>
-
-                    <div class="serviceOC-foot">
-                        <div class="item state">2017-10-25</div>
-                        <div class="pull-right gray" data-toggle="modal" data-target="#evaluateModal">评价</div>
-                    </div>
-                </div>
-
-                <div class="serviceO-Context radius">
-                    <div class="serviceOC-titl">
-                        <div>单号:<b>123456789</b></div>
-                        <div class="pull-right state">处理中</div>
-                    </div>
-                    <div class="serviceOC-context">
-                        换手机也没用换手机也没用换手机也没用
-                    </div>
-
-                    <div class="serviceOC-foot">
-                        <div class="item state">2017-10-25</div>
-                        <div class="pull-right gray expediteOrder">
-                                催单
-                                <div class="expediteModel radius hide">
-                                    <span class="expedite-assign"></span>
-                                    <div class="expedite-content">
-                                        该工单已被催单<span class="red">0</span>次，请确认是否要催单?
-                                    </div>
-                                    <div class="expedite-foot">
-                                        <button type="botton" class="btn btn-default pull-right expedite-close">暂不需要</button>
-                                        <button type="botton" class="btn btn-primary pull-right evaluate-color evaluateOrderFn" style="margin-right:20px">我要催单</button>
-                                    </div>
-                                </div>
+                <div id="orderSerivceTemplate">
+                    <!-- <div class="serviceO-Context radius">
+                        <div class="serviceOC-titl">
+                            <div>单号:<b>123456789</b></div>
+                            <div class="pull-right state">处理中</div>
                         </div>
-                    
+                        <div class="serviceOC-context"  data-toggle="modal" data-target="#chatModal">
+                            账户：123你好！ 我们部长的账号登陆不理哦啊手机没响，换手机也没用换手机也没用换手机也没用
+                        </div>
+    
+                        <div class="serviceOC-foot">
+                            <div class="item state">2017-10-25</div>
+                            <div class="pull-right gray" data-toggle="modal" data-target="#evaluateModal">评价</div>
+                        </div>
                     </div>
+    
+                    <div class="serviceO-Context radius">
+                        <div class="serviceOC-titl">
+                            <div>单号:<b>123456789</b></div>
+                            <div class="pull-right state">处理中</div>
+                        </div>
+                        <div class="serviceOC-context">
+                            换手机也没用换手机也没用换手机也没用
+                        </div>
+    
+                        <div class="serviceOC-foot">
+                            <div class="item state">2017-10-25</div>
+                            <div class="pull-right gray expediteOrder">
+                                    催单
+                                    <div class="expediteModel radius hide">
+                                        <span class="expedite-assign"></span>
+                                        <div class="expedite-content">
+                                            该工单已被催单<span class="red">0</span>次，请确认是否要催单?
+                                        </div>
+                                        <div class="expedite-foot">
+                                            <button type="botton" class="btn btn-default pull-right expedite-close">暂不需要</button>
+                                            <button type="botton" class="btn btn-primary pull-right evaluate-color evaluateOrderFn" style="margin-right:20px">我要催单</button>
+                                        </div>
+                                    </div>
+                            </div>
+                        
+                        </div>
+                    </div> -->
                 </div>
+
 
             </div>
 
@@ -217,22 +220,25 @@
                         <div class="">公告</div>
                         <div class="serviceO-page">
                             <span class="pageNum">1/4</span>
-                            <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                            <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                            <i class="fa fa-chevron-circle-left noticePre" aria-hidden="true"></i>
+                            <i class="fa fa-chevron-circle-right noticeNext" aria-hidden="true"></i>
                         </div>
                     </div>
 
-                    <div class="notice-Context">
-                        <div class="">《紧急通知》</div>
-                        <div class="not-Con">
-                                紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知
-                                紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通
-                        </div>
-                        <div class="not-foot">
-                                <div class="gray">查看详情>></div>
-                                <div class="item state pull-right">2017-10-25</div>
-                        </div>
+                    <div class="noticeList">
+                        <!-- <div class="notice-Context">
+                            <div class="">《紧急通知》</div>
+                            <div class="not-Con">
+                                    紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知
+                                    紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通
+                            </div>
+                            <div class="not-foot">
+                                    <div class="gray">查看详情>></div>
+                                    <div class="item state pull-right">2017-10-25</div>
+                            </div>
+                        </div> -->
                     </div>
+
 
             </div>
 

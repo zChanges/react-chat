@@ -1,6 +1,9 @@
 import React,{Component} from 'react';
 import {Col, Tabs, Tab, Row, Nav, NavItem} from "react-bootstrap";
 import MessageList from './Message';
+import InputBox from './inputBox';
+import textMessage from './Message/text';
+
 export default class Chat extends Component{
 
     constructor(props,context){
@@ -8,6 +11,7 @@ export default class Chat extends Component{
         this.state ={
             text : '111'
         };
+        
     }
 
     handelChange(e){
@@ -20,8 +24,11 @@ export default class Chat extends Component{
         });
     }
 
-    sendClick(e) {
-        console.log(e)
+    sendClick = (value)=> {
+        console.log(value)
+        const context  = textMessage.render(value,true);
+        console.log(this.dom)
+        this.dom.appendChild(context)
     }
 
     render(){
@@ -43,7 +50,10 @@ export default class Chat extends Component{
                 <Tab.Content animation>
                   <Tab.Pane eventKey="first">
                       <div id="client">
-                        <div id="chat-client">
+                        <div 
+                            id="chat-client" 
+                            ref={dom => this.dom = dom}
+                        >
                             <MessageList self={false} context={'欢迎'}/>
                             <MessageList self={true} context={'aaa'}/>
                         </div>
@@ -53,11 +63,15 @@ export default class Chat extends Component{
                             <i className="fa fa-folder-o" aria-hidden="true"></i> 
                         </div>
 
-                        <div className="client-bootom">
+                        <InputBox 
+                            placeholder={"你可以尝试输入类似'美信登陆不成功'、'mip显示异常' 等问题。"} 
+                            handSendVal={this.sendClick}
+                        />
+                        {/* <div className="client-bootom">
                             <textarea placeholder="你可以尝试输入类似'美信登陆不成功'、'mip显示异常' 等问题。"></textarea>
                             <button className="bootom-btn pull-right btn-send" onClick={this.sendClick}>发送</button>
                             <button className="bootom-btn pull-right btn-out">退出人工服务</button>
-                        </div>
+                        </div> */}
                         <div className="chat-hint">机器人无法解决？<a>转人工服务</a></div>
                       </div>
                   </Tab.Pane>

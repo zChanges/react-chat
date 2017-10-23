@@ -43,7 +43,7 @@ input::-ms-input-placeholder {
     position: relative;
     padding: 20px 20px;
     border-top: none !important;
-    height: 414px;
+    height: 394px;
 }
 .scrollbar-macosx{
     /* height: 414px !important;
@@ -252,10 +252,13 @@ input::-ms-input-placeholder {
     display: inline-block;
 }
 
-.gray{
-    color: #54AAE8;
-    cursor: pointer;
+.gray a{
+    /* color: #54AAE8; */
+    /* cursor: pointer; */
+    text-decoration: underline; 
 }
+
+
 
 .notice{
     

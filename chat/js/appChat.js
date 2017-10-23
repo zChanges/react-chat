@@ -108,40 +108,21 @@
 
                 //转人工
                 $("#switchHuman").click(function () {
-                    $(".chat-operation").removeClass('hide');
+                    $(".chat-operation").children().eq(1).removeClass('hide');
+                    $(".chat-operation").children().eq(2).removeClass('hide');
                     $(".outWork").removeClass('hide');
-                    
-                    $(".scoll-reference").css({ 'height': '394px'});
                     FAQ.offline();
                 });
 
                 // 转机器人
                 $(".outWork").click(function () {
-                    $(".chat-operation").addClass('hide');
+                    // $(".chat-operation").addClass('hide');
+                    $(".chat-operation").children().eq(1).addClass('hide');
+                    $(".chat-operation").children().eq(2).addClass('hide');
                     $(".outWork").addClass('hide');
-                    $(".scoll-reference").css({ 'height': '414px'});
                     FAQ.init();
                 });
 
-                // 显示催单modal
-                $(".expediteOrder").click(function () {
-                    $(".expediteModel").removeClass('hide');
-                });
-
-                // 关闭催单modal
-                $(".expedite-close").click(function(event) {
-                    event.stopPropagation();
-                    $(".expediteModel").addClass('hide')
-                });
-
-                // 点击催单禁用按钮并调借口
-                $('.evaluateOrderFn').click(function(e){
-                    $(e.target).attr('disabled','disabled');
-                    var tiem = setTimeout(function() {
-                        $(e.target).removeAttr('disabled');
-                    },1000*10);
-                    tiem = null;
-                });
 
                 //点击勾选礼物
                 $('.present').click(function(event) {
@@ -153,7 +134,6 @@
                         console.log($(element).siblings('img').attr('title'));
                     });
                 });
-
 
 
                 //截屏
@@ -234,7 +214,79 @@
                     }
                 });
 
-    
+                //服务单列表初始化---后台数据以数组形式传入
+                self.getOrderServiceList([{ 
+                    orderNumber:'015415',
+                    state:'处理中',
+                    context:'服务单详情服务单详情服务单详情服务单详情服务单详情111',
+                    time:'2017-10-13 16:21'
+                },{
+                    orderNumber:'123456789',
+                    state:'待评价',
+                    context:'待评价待评价待评价待评价待评价待评价待评价222',
+                    time:'2017-10-03 16:21'
+                }]);
+
+
+                var num  = 0;
+                //pre-服务单
+                $(".servicePagePre").click(function() {
+                    //ajax获取数据数组
+                    self.getOrderServiceList([{ 
+                        orderNumber:num--,
+                        state:'处理中',
+                        context:'服务单详情服务单详情服务单详情服务单详情服务单详情'+num,
+                        time:'2017-10-13 16:21'
+                    },{
+                        orderNumber: num--,
+                        state:'待评价',
+                        context:'待评价待评价待评价待评价待评价待评价待评价'+num,
+                        time:'2017-10-03 16:21'
+                    }]);
+                });
+
+                //next-服务单
+                $('.servicePageNext').click(function() {
+                    self.getOrderServiceList([{ 
+                        orderNumber: num++,
+                        state:'处理中',
+                        context:'服务单详情服务单详情服务单详情服务单详情服务单详情'+num,
+                        time:'2017-10-13 16:21'
+                    },{
+                        orderNumber: num++,
+                        state:'待评价',
+                        context:'待评价待评价待评价待评价待评价待评价待评价'+num,
+                        time:'2017-10-03 16:21'
+                    }]);
+                });
+
+                // 获取服务单列表
+                self.getNoticeLise({
+                    title: '<<紧急通知>>',
+                    context: '紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知',
+                    src:'',
+                    time:'2017-10-23 17:56'
+                });
+
+                $(".noticePre").click(function() {
+                    self.getNoticeLise({
+                        title: '<<紧急通知'+ num-- +'>>',
+                        context: '紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知',
+                        src:'',
+                        time:'2017-10-23 17:56'
+                    });
+                });
+
+                $(".noticeNext").click(function() {
+                    self.getNoticeLise({
+                        title: '<<紧急通知'+ num++ +'>>',
+                        context: '紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知',
+                        src:'',
+                        time:'2017-10-23 17:56'
+                    });
+                });
+
+
                 
             },
             //转义表情
@@ -270,7 +322,7 @@
                                     len = face[i][j][0].length,
                                     str1 = data.substr(0, index),
                                     str2 = data.substr(index+len);
-                                data = str1 + (bool?face[i][j][1]:('<img src="'+ src + j +'.'+ faceType[2] +'">')) + str2;
+                                data = str1 + (bool?face[i][j][1]:('<img src="'+ src + 'yun'+j +'.'+ faceType[2] +'">')) + str2;
                             }
                             if(!bool) {
                                 while(data.indexOf(face[i][j][1])+1) {
@@ -278,7 +330,7 @@
                                         len = face[i][j][1].length,
                                         str1 = data.substr(0, index),
                                         str2 = data.substr(index+len);
-                                    data = str1 +'<img src="'+ src + j +'.'+ faceType[2] +'">'+ str2;
+                                    data = str1 +'<img src="'+ src + 'yun'+j +'.'+ faceType[2] +'">'+ str2;
                                 }
                             }
                         }
@@ -314,7 +366,157 @@
                 if(ret) {
                     window.location.href="http://www.ggniu.cn/download/CaptureInstall.exe";
                 }
+            },
+            // 模版
+            template: function() {
+                /**
+                 * 最近服务单template
+                 * @param orderNumber 单号
+                 * @param state 状态(处理or待评价;评价or催单也根据state来判断)
+                 * @param context 服务单内容
+                 * @param time    时间
+                 * @param 评价or催单根据state判断 
+                 */
+                var serviceOrderTemplate = function(data) {
+                    var stateBtnTmp = '';
+                    if(data.state === '处理中'){
+                        stateBtnTmp = reminderTemplate({
+                            number:0
+                        });
+                    }else{
+                        stateBtnTmp = '<div class="pull-right gray" data-toggle="modal" data-target="#evaluateModal">评价</div>'
+                    }
+
+                    var template =  '<div class="serviceO-Context radius">'+
+                        '<div class="serviceOC-titl">'+
+                            '<div>单号:<b>'+ data.orderNumber +'</b></div>'+
+                            '<div class="pull-right state">'+ data.state +'</div>'+
+                        '</div>'+
+                        '<div class="serviceOC-context" data-toggle="modal" data-target="#chatModal"> '+ data.context +'</div>'+
+                        '<div class="serviceOC-foot">'+
+                            '<div class="item state">'+ data.time +'</div>'+
+                             stateBtnTmp+
+                        '</div>'+
+                    '</div>'
+                    return template; 
+                }
+
+                /**
+                 * 催单template
+                 * @param number 催单次数
+                 */
+                var reminderTemplate = function(data) {
+                    var template =  '<div class="pull-right gray expediteOrder">催单'+
+                    '<div class="expediteModel radius hide">'+
+                        '<span class="expedite-assign"></span>'+
+                        '<div class="expedite-content">'+
+                            '该工单已被催单<span class="red">'+data.number+'</span>次，请确认是否要催单?'+
+                        '</div>'+
+                        '<div class="expedite-foot">'+
+                            '<button type="botton" class="btn btn-default pull-right expedite-close">暂不需要</button>'+
+                            '<button type="botton" class="btn btn-primary pull-right evaluate-color evaluateOrderFn" style="margin-right:20px">我要催单</button>'+
+                        '</div>'+
+                    '</div>'+
+                    '</div>'
+                    return template; 
+                }
+
+                /**
+                 * 公告template
+                 * @param title 标题
+                 * @param context 内容
+                 * @param src 查看详情地址
+                 * @param time 时间
+                 */
+                var noticeTemplate = function(data){
+                    var template =  '<div class="notice-Context">'+
+                        '<div class="">'+ data.title +'</div>'+
+                        '<div class="not-Con">'+
+                                data.context +
+                            '</div>'+
+                            '<div class="not-foot">'+
+                            '<div class="gray"><a href=" '+ data.src +' ">查看详情>></a></div>'+
+                            '<div class="item state pull-right">'+ data.time +'</div>'+
+                            '</div>'+
+                        '</div>'
+                        return template;
+                }
+
+
+                return {
+                    serviceOrderTemplate: serviceOrderTemplate,
+                    reminderTemplate: reminderTemplate,
+                    noticeTemplate: noticeTemplate
+                }
+            },
+            // 添加催单事件
+            addReminderFn: function() {
+                // 显示催单modal
+                $(".expediteOrder").bind('click',function () {
+                    $(".expediteModel").removeClass('hide');
+                });
+
+                // 关闭催单modal
+                $(".expedite-close").click(function(event) {
+                    event.stopPropagation();
+                    $(".expediteModel").addClass('hide')
+                });
+
+                // 点击催单禁用按钮并调借口
+                $('.evaluateOrderFn').click(function(e){
+                    $(e.target).attr('disabled','disabled');
+                    var tiem = setTimeout(function() {
+                        $(e.target).removeAttr('disabled');
+                    },1000*10);
+                    tiem = null;
+                });
+            },
+            // 获取服务单列表
+            getOrderServiceList: function(data) {
+                var self = this;
+                if(data.length > 0){
+                    $("#orderSerivceTemplate").empty();
+                    var templates = '';
+                    data.forEach(function(item) {
+                        templates += self.template().serviceOrderTemplate({
+                            orderNumber: item.orderNumber,
+                            state: item.state,
+                            context: item.context,
+                            time: item.time
+                        });
+                    });
+
+                    $("#orderSerivceTemplate").append(templates);
+                    //绑定催单事件
+                    this.addReminderFn();
+                }
+
+               
+                
+                // var templateOne = this.template().serviceOrderTemplate({
+                //     orderNumber:'015415',
+                //     state:'处理中',
+                //     context:'服务单详情服务单详情服务单详情服务单详情服务单详情',
+                //     time:'2017-10-13 16:21'
+                // });
+
+                // var templateTow = this.template().serviceOrderTemplate({
+                //     orderNumber:'123456789',
+                //     state:'待评价',
+                //     context:'待评价待评价待评价待评价待评价待评价待评价',
+                //     time:'2017-10-03 16:21'
+                // });
+         
+            },
+            // 获取公告列表
+            getNoticeLise: function(data) {
+                if(data){
+                    $(".noticeList").empty();
+                    var template = this.template().noticeTemplate(data);
+                    $(".noticeList").append(template);
+                }
             }
+
 
 
 

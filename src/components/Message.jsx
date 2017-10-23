@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-
 class Message extends Component {
     static propTypes = {
         self: PropTypes.bool,
@@ -17,7 +16,7 @@ class Message extends Component {
                         <div className="head-logo"><img src={require('../img/robot.png')}/></div>
                         <div className="">
                             <div className="item-name">{self ? '我' : 'IT小助手'}</div>
-                            <div className="item-context">{context}</div>
+                            {/* <div className="item-context">{context}</div> */}
                         </div>
                     </div>
                 </div>
