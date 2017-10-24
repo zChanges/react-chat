@@ -160,7 +160,7 @@
                 <div class="serviceO-title">
                     <div class="">最近服务单</div>
                     <div class="serviceO-page">
-                        <span class="pageNum">1/4</span>
+                        <span class="pageNum"><span class="pageIndex"></span>/4</span>
                         <i class="fa fa-chevron-circle-left servicePagePre"  aria-hidden="true"></i>
                         <i class="fa fa-chevron-circle-right servicePageNext" aria-hidden="true"></i>
                     </div>
@@ -219,7 +219,7 @@
                     <div class="serviceO-title">
                         <div class="">公告</div>
                         <div class="serviceO-page">
-                            <span class="pageNum">1/4</span>
+                            <span class="pageNum"><span class="noticeIndex"></span>/4</span>
                             <i class="fa fa-chevron-circle-left noticePre" aria-hidden="true"></i>
                             <i class="fa fa-chevron-circle-right noticeNext" aria-hidden="true"></i>
                         </div>
@@ -245,29 +245,33 @@
         </div>
     </div> 
 
+    <div id="result"></div>
+
+    <!-- 服务单详情Modal -->
     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#chatModal">Large modal</button> -->
-    
     <div class="modal fade bs-example-modal-lg" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" id="chat-modal">
-                <form class="form-horizontal">
+                <!-- <form class="form-horizontal">
                     <div class="form-group serve">
                         <label  class="col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label">服务详情</label>
                         <div class="serveProcess">
                             <div class="process-round">
-                                评价
+                                <div class="process-text">创建</div>
                                 <span class="process-time">2017-10-17 12:00</span>
                             </div>
                             <div class="crosswise"></div>
-                            <div class="process-round">评价
+                            <div class="process-round">
+                                <div class="process-text">分派</div>
                                 <span class="process-time">2017-10-17 12:00</span>
                             </div>
                             <div class="crosswise"></div>
-                            <div class="process-round">评价
+                            <div class="process-round">
+                                    <div class="process-text" style="margin-top:6px;"><p>处理</p><p>完成</p></div>
                                     <span class="process-time">2017-10-17 12:00</span>
                             </div>
                             <div class="crosswise processPass-color"></div>
-                            <div class="process-round roundPass-color">评价</div>
+                            <div class="process-round roundPass-color"><div class="process-text">评价</div></div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -345,13 +349,118 @@
                             <button type="botton" class="btn btn-default pull-right evaluate-color">评价</button>
                         </div>
                     </div>
-                </form>
+                </form> -->
         </div>
       </div>
     </div>
+    <!-- 服务单详情Modal  END-->
 
+
+    <!-- 服务单详情template -->
+    <script id="chatModalTmpl" type="text/x-jsrender">
+        <form class="form-horizontal">
+            <div class="form-group serve">
+                <label  class="col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label">服务详情</label>
+                <div class="serveProcess">
+                    <div class="process-round">
+                        <div class="process-text">创建</div>
+                        <span class="process-time"> {{:creationTime}} </span>
+                    </div>
+                    <div class="crosswise"></div>
+                    <div class="process-round">
+                        <div class="process-text">分派</div>
+                        <span class="process-time"> {{:assignTime}} </span>
+                    </div>
+                    <div class="crosswise"></div>
+                    <div class="process-round">
+                            <div class="process-text" style="margin-top:6px;"><p>处理</p><p>完成</p></div>
+                            <span class="process-time"> {{:figureOutTime}} </span>
+                    </div>
+                    <div class="crosswise processPass-color"></div>
+                    <div class="process-round roundPass-color"><div class="process-text">评价</div></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label  class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">单号:</label>
+                <div class="col-sm-4 col-md-4  col-xs-4">  
+                        <label class="control-label not-Weight">{{:orderNumber}}</label>
+                        <button type="botton" class="btn evaluate-btn">{{:state}}</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">系统名称:</label>
+                <div class="col-lg-8 col-md-8 col-xs-8">
+                        <label class="control-label not-Weight">{{:systemName}}</label> 
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">问题描述:</label>
+                <div class="col-sm-12">
+                </div>
+                <div class="col-sm-8 col-lg-offset-1 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+                    {{:problemDescription}}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">附件:</label>
+                <div class="col-lg-8 col-md-8 col-xs-8">
+                        <div class="file-img">
+                            <img style="display: inherit" src='./img/robot.png'/>
+                            <span>附件名称.jpg</span>
+                        </div>
+
+                        <div class="file-img">
+                            <img style="display: inherit" src='./img/robot.png'/>
+                            <span>附件名称.jpg</span>
+                        </div>
+
+                        <div class="file-img">
+                            <img style="display: inherit" src='./img/robot.png'/>
+                            <span>附件名称.jpg</span>
+                        </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">催单次数:</label>
+                <div class="col-lg-8 col-md-8 col-xs-8">
+                    <label class="control-label not-Weight">{{:reminderNumber}}次</label> 
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <div class="page-header col-lg-offset-1 col-lg-10"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">处理人:</label>
+                <div class="col-lg-8 col-md-8 col-xs-8">
+                        <label class="control-label not-Weight">{{:handler}}</label> 
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">处理意见:</label>
+                <div class="col-lg-8 col-md-8 col-xs-8">
+                    <label class="control-label not-Weight">{{: handlingSuggestion}}</label> 
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-sm-offset-3 col-md-offset-3 col-xs-offset-2 col-lg-10 col-xs-10 col-md-8 col-sm-8 Process-foot">
+                    <button data-dismiss="modal" aria-label="Close" aria-hidden="true" style="margin-right:20px" type="botton" class="btn btn-default pull-right">返回</button>
+                    <button type="botton" class="btn btn-default pull-right evaluate-color">评价</button>
+                </div>
+            </div>
+        </form>
+    </script>
+    <!-- 服务单详情template  END-->
+
+    <!-- 评价详情Modal -->
     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#evaluateModal">Large modal</button> -->
-    
     <div class="modal fade bs-example-modal-lg" id="evaluateModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" id="chat-modal">
@@ -363,8 +472,10 @@
                     <div class="form-group ">
                         <label  class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">工程师:</label>
                         <div class="col-sm-3 col-md-3  col-xs-3 detail">  
-                            <label class="control-label not-Weight"><b>13251321321</b></label>
-                            <label class="control-label not-Weight">工号1231456</label>
+                            <div id='evaluateDetail'>
+                                    <!-- <label class="control-label not-Weight"><b>13251321321</b></label>
+                                    <label class="control-label not-Weight">工号1231456</label> -->
+                            </div>
                             <button type="button" class="btn unsolved">工单未解决</button>
                         </div>
                     </div>
@@ -431,8 +542,8 @@
                         <label class="not-Weight col-xs-2 col-sm-3 col-md-3 col-lg-2 control-label colorA4">服务建议:</label>
                         <div class="col-lg-8 col-md-8 col-xs-8">
                                 <div class="textareaNum">
-                                    <textarea style="resize:none;" placeholder="如果您对我的服务有更好的想发……"  class="form-control" rows="6"></textarea>
-                                    <span class="changenum">0/500</span>
+                                    <textarea id="textareaVal" style="resize:none;" placeholder="如果您对我的服务有更好的想发……"  class="form-control" rows="6"></textarea>
+                                    <span class="changenum"><span class="textareaLen">0</span>/500</span>
                                 </div>
                         </div>
                     </div>
@@ -449,6 +560,18 @@
         </div>
       </div>
     </div>
+    <!-- 评价详情Modal END-->
+
+    <!-- 评价详情Tmplate -->
+    <script id="evaluateTmpl" type="text/x-jsrender">
+        <label class="control-label not-Weight"><b>{{:engineer}}</b></label>
+        <label class="control-label not-Weight">工号{{:jobNumber}}</label>
+    </script>
+
+    <!-- 评价详情Tmplate END-->
+    
+    
+    
 
     <div class="modal fade bs-example-modal-lg" id="opinion" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document" style="width:600px;" >
@@ -479,13 +602,16 @@
     </div>
     
 
+    
 
 
 </body>  
 </html>
 <script src="./js/jquery/jquery-1.11.3.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script src="./js/jsrender.min.js"></script>
 <script src="./bootstrap/js/bootstrap.min.js"></script>
+<script src="./js/polyfills.js"></script>
 <script src="./js/scrollbar.js"></script>
 <script src="./js/base.js"></script>
 <script src="./js/face.js"></script>
@@ -495,3 +621,4 @@
 <script>
 //    $("#opinion").modal('evaluateModal')
 </script>
+

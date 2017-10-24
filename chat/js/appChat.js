@@ -2,6 +2,20 @@
        
         function ChatModel() {
             this.init();
+            // 初始化服务单和公告栏页码
+            this.orderServeIndex = 1;
+            $(".pageIndex").html(this.orderServeIndex);
+            this.noticeIndex = 1;
+            $(".noticeIndex").html(this.noticeIndex);
+            // 初始化服务单和公告栏数据
+            this.getRightNoticeList();
+
+            this.getOrderServeDetailData();
+
+            this.getEvaluateDetailData();
+
+            this.listenTextareaLen($(".textareaLen"),$("#textareaVal"));
+
             // this.workBtn = workBtn;
             // this.robotBtn = robotBtn;
         }
@@ -214,80 +228,7 @@
                     }
                 });
 
-                //服务单列表初始化---后台数据以数组形式传入
-                self.getOrderServiceList([{ 
-                    orderNumber:'015415',
-                    state:'处理中',
-                    context:'服务单详情服务单详情服务单详情服务单详情服务单详情111',
-                    time:'2017-10-13 16:21'
-                },{
-                    orderNumber:'123456789',
-                    state:'待评价',
-                    context:'待评价待评价待评价待评价待评价待评价待评价222',
-                    time:'2017-10-03 16:21'
-                }]);
 
-
-                var num  = 0;
-                //pre-服务单
-                $(".servicePagePre").click(function() {
-                    //ajax获取数据数组
-                    self.getOrderServiceList([{ 
-                        orderNumber:num--,
-                        state:'处理中',
-                        context:'服务单详情服务单详情服务单详情服务单详情服务单详情'+num,
-                        time:'2017-10-13 16:21'
-                    },{
-                        orderNumber: num--,
-                        state:'待评价',
-                        context:'待评价待评价待评价待评价待评价待评价待评价'+num,
-                        time:'2017-10-03 16:21'
-                    }]);
-                });
-
-                //next-服务单
-                $('.servicePageNext').click(function() {
-                    self.getOrderServiceList([{ 
-                        orderNumber: num++,
-                        state:'处理中',
-                        context:'服务单详情服务单详情服务单详情服务单详情服务单详情'+num,
-                        time:'2017-10-13 16:21'
-                    },{
-                        orderNumber: num++,
-                        state:'待评价',
-                        context:'待评价待评价待评价待评价待评价待评价待评价'+num,
-                        time:'2017-10-03 16:21'
-                    }]);
-                });
-
-                // 获取服务单列表
-                self.getNoticeLise({
-                    title: '<<紧急通知>>',
-                    context: '紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知',
-                    src:'',
-                    time:'2017-10-23 17:56'
-                });
-
-                $(".noticePre").click(function() {
-                    self.getNoticeLise({
-                        title: '<<紧急通知'+ num-- +'>>',
-                        context: '紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知',
-                        src:'',
-                        time:'2017-10-23 17:56'
-                    });
-                });
-
-                $(".noticeNext").click(function() {
-                    self.getNoticeLise({
-                        title: '<<紧急通知'+ num++ +'>>',
-                        context: '紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知',
-                        src:'',
-                        time:'2017-10-23 17:56'
-                    });
-                });
-
-
-                
             },
             //转义表情
             replaceFace: function (data, bool) {
@@ -435,7 +376,7 @@
                                 data.context +
                             '</div>'+
                             '<div class="not-foot">'+
-                            '<div class="gray"><a href=" '+ data.src +' ">查看详情>></a></div>'+
+                            '<div><a style="text-decoration: underline;" class="state" href=" '+ data.src +' ">查看详情>></a></div>'+
                             '<div class="item state pull-right">'+ data.time +'</div>'+
                             '</div>'+
                         '</div>'
@@ -449,7 +390,7 @@
                     noticeTemplate: noticeTemplate
                 }
             },
-            // 添加催单事件
+            // 添加服务单-催单事件
             addReminderFn: function() {
                 // 显示催单modal
                 $(".expediteOrder").bind('click',function () {
@@ -473,8 +414,10 @@
             },
             // 获取服务单列表
             getOrderServiceList: function(data) {
+                
                 var self = this;
                 if(data.length > 0){
+                
                     $("#orderSerivceTemplate").empty();
                     var templates = '';
                     data.forEach(function(item) {
@@ -485,28 +428,25 @@
                             time: item.time
                         });
                     });
-
                     $("#orderSerivceTemplate").append(templates);
                     //绑定催单事件
                     this.addReminderFn();
+                }    
+
+            },
+            // 获取服务单翻页num
+            getPageIndex: function(type,pageIndex,pageDom) {
+                if(type === 'Pre' && this[pageIndex] > 1){
+                    this[pageIndex]--
+                    pageDom.html(this[pageIndex]);
+                    return this[pageIndex]
+                }else if(type === 'Next' && this[pageIndex] > 0 && this[pageIndex] < 4){
+                    this[pageIndex]++
+                    pageDom.html(this[pageIndex]);
+                    return this[pageIndex]
+                }else{
+                    return false;
                 }
-
-               
-                
-                // var templateOne = this.template().serviceOrderTemplate({
-                //     orderNumber:'015415',
-                //     state:'处理中',
-                //     context:'服务单详情服务单详情服务单详情服务单详情服务单详情',
-                //     time:'2017-10-13 16:21'
-                // });
-
-                // var templateTow = this.template().serviceOrderTemplate({
-                //     orderNumber:'123456789',
-                //     state:'待评价',
-                //     context:'待评价待评价待评价待评价待评价待评价待评价',
-                //     time:'2017-10-03 16:21'
-                // });
-         
             },
             // 获取公告列表
             getNoticeLise: function(data) {
@@ -515,8 +455,132 @@
                     var template = this.template().noticeTemplate(data);
                     $(".noticeList").append(template);
                 }
-            }
+            },
+            // 初始化服务单和公告数据
+            getRightNoticeList: function() {
+                var self = this;
+                /*----------------服务单----------------------*/
+                //服务单列表初始化---后台数据以数组形式传入
+                this.getOrderServiceList([{ 
+                    orderNumber:'015415',
+                    state:'处理中',
+                    context:'服务单详情服务单详情服务单详情服务单详情服务单详情111',
+                    time:'2017-10-13 16:21'
+                },{
+                    orderNumber:'123456789',
+                    state:'待评价',
+                    context:'待评价待评价待评价待评价待评价待评价待评价222',
+                    time:'2017-10-03 16:21'
+                }]);
 
+                //pre-服务单
+                $(".servicePagePre").click(function() {
+                    //ajax获取数据数组
+                    if(self.getPageIndex('Pre','orderServeIndex',$(".pageIndex"))){
+                        self.getOrderServiceList([{ 
+                            orderNumber:self.orderServeIndex,
+                            state:'处理中',
+                            context:'服务单详情服务单详情服务单详情服务单详情服务单详情'+self.orderServeIndex,
+                            time:'2017-10-13 16:21'
+                        },{
+                            orderNumber: self.orderServeIndex,
+                            state:'待评价',
+                            context:'待评价待评价待评价待评价待评价待评价待评价'+self.orderServeIndex,
+                            time:'2017-10-03 16:21'
+                        }]);
+                    }
+                });
+
+                //next-服务单
+                $('.servicePageNext').click(function() {
+                    if(self.getPageIndex('Next','orderServeIndex',$(".pageIndex"))){
+                        self.getOrderServiceList([{ 
+                            orderNumber: self.orderServeIndex,
+                            state:'处理中',
+                            context:'服务单详情服务单详情服务单详情服务单详情服务单详情'+self.orderServeIndex,
+                            time:'2017-10-13 16:21'
+                        },{
+                            orderNumber: self.orderServeIndex,
+                            state:'待评价',
+                            context:'待评价待评价待评价待评价待评价待评价待评价'+self.orderServeIndex,
+                            time:'2017-10-03 16:21'
+                        }]);
+                    }
+                });
+
+                /*----------------公告----------------------*/
+                // 获取服务单列表
+                this.getNoticeLise({
+                    title: '<<紧急通知>>',
+                    context: '紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知',
+                    src:'',
+                    time:'2017-10-23 17:56'
+                });
+
+                // 服务单Pre翻页
+                $(".noticePre").click(function() {
+                    if(self.getPageIndex('Pre','noticeIndex',$(".noticeIndex"))){
+                        self.getNoticeLise({
+                            title: '<<紧急通知'+ self.noticeIndex +'>>',
+                            context: '紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知',
+                            src:'',
+                            time:'2017-10-23 17:56'
+                        });
+                    }
+                });
+                // 服务单Next翻页
+                $(".noticeNext").click(function() {
+                    if(self.getPageIndex('Next','noticeIndex',$(".noticeIndex"))){
+                        self.getNoticeLise({
+                            title: '<<紧急通知'+ self.noticeIndex +'>>',
+                            context: '紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知紧急通知',
+                            src:'',
+                            time:'2017-10-23 17:56'
+                        });
+                    }
+                });
+            },
+            // 获取服务单详情
+            getOrderServeDetailData: function() {
+                // ajax 获取详情
+                var orderServeData = {
+                    creationTime: '2017-10-24 11:11',
+                    assignTime: '2017-10-25 11:12',
+                    figureOutTime: '2017-10-26 11:13',
+                    orderNumber: '单号 1321321321',
+                    state:'状态 待评价',
+                    systemName:'系统名称美信',
+                    problemDescription:'账号:你好，描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述',
+                    reminderNumber:'处理此处1',
+                    handler:'处理人哦',
+                    handlingSuggestion:'处理意见意见'
+                }
+                var tmpl = $.templates("#chatModalTmpl");
+                var html = tmpl.render(orderServeData);
+                $("#chat-modal").html(html);
+            },
+            // 获取评价详情
+            getEvaluateDetailData: function() {
+                // ajax 获取详情
+                var evaluateData = {
+                    engineer: '工程师',
+                    jobNumber: '2102313'
+                }
+                var tmpl = $.templates("#evaluateTmpl");
+                var html = tmpl.render(evaluateData);
+                $("#evaluateDetail").html(html);
+            },
+            listenTextareaLen: function(numberDom,inputVal) {
+                inputVal.keyup(function() {
+                    var length = inputVal.val().length;
+                    console.log(length);
+                    if(length > 500){
+                        var val = inputVal.val().slice(0,500);
+                        inputVal.val(val);
+                    }
+                    numberDom.html(length)
+                });
+            }
 
 
 
@@ -527,3 +591,4 @@
     
        
     }())
+    

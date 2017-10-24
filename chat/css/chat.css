@@ -252,10 +252,9 @@ input::-ms-input-placeholder {
     display: inline-block;
 }
 
-.gray a{
-    /* color: #54AAE8; */
-    /* cursor: pointer; */
-    text-decoration: underline; 
+.gray{
+    color: #54AAE8;
+    cursor: pointer;
 }
 
 
@@ -363,6 +362,13 @@ input::-ms-input-placeholder {
     text-align: center;
     color: #ddd;
     position: relative;
+}
+.process-text{
+    width: 100%;
+}
+.process-text p{
+    color: #ddd;
+    line-height: 15px;
 }
 .serveProcess div{
     float: left;
