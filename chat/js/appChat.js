@@ -7,14 +7,8 @@
             $(".pageIndex").html(this.orderServeIndex);
             this.noticeIndex = 1;
             $(".noticeIndex").html(this.noticeIndex);
-            // 初始化服务单和公告栏数据
-            this.getRightNoticeList();
 
-            this.getOrderServeDetailData();
 
-            this.getEvaluateDetailData();
-
-            this.listenTextareaLen($(".textareaLen"),$("#textareaVal"));
 
             // this.workBtn = workBtn;
             // this.robotBtn = robotBtn;
@@ -141,12 +135,11 @@
                 //点击勾选礼物
                 $('.present').click(function(event) {
                     $(event.currentTarget).children('.present-box').toggleClass('show');
-                    console.log($(".present-box",".show").prevObject);
-
-                    var arr = new Array().slice.apply($(".present-box",".show").prevObject);
-                    arr.forEach(function(element) {
-                        console.log($(element).siblings('img').attr('title'));
-                    });
+                    // console.log($(".present-box",".show").prevObject);
+                    // var arr = new Array().slice.apply($(".present-box",".show").prevObject);
+                    // arr.forEach(function(element) {
+                    //     console.log($(element).siblings('img').attr('title'));
+                    // });
                 });
 
 
@@ -228,6 +221,23 @@
                     }
                 });
 
+                // 初始化服务单和公告栏数据
+                this.getRightNoticeList();
+                        
+            
+                // 监听评价建议长度。
+                this.listenTextareaLen($(".textareaLen"),$("#textareaVal"));
+
+                this.listenTextareaLen($(".yawpTextareaLen"),$("#yawpTextarea"));
+                
+
+                // 点击满意不满意添加css
+                $(".isSatisfaction-btn").click(function(e) {
+                    $('.isSatisfaction-btn').eq(0).toggleClass('Satisfaction-color');
+                    $('.isSatisfaction-btn').eq(1).toggleClass('Satisfaction-color');
+                })
+            
+            
 
             },
             //转义表情
@@ -312,6 +322,7 @@
             template: function() {
                 /**
                  * 最近服务单template
+                 * @param id 主键
                  * @param orderNumber 单号
                  * @param state 状态(处理or待评价;评价or催单也根据state来判断)
                  * @param context 服务单内容
@@ -319,21 +330,23 @@
                  * @param 评价or催单根据state判断 
                  */
                 var serviceOrderTemplate = function(data) {
+                   
                     var stateBtnTmp = '';
                     if(data.state === '处理中'){
                         stateBtnTmp = reminderTemplate({
-                            number:0
+                            number: data.number,
+                            id: data.id
                         });
                     }else{
-                        stateBtnTmp = '<div class="pull-right gray" data-toggle="modal" data-target="#evaluateModal">评价</div>'
+                        stateBtnTmp = '<div class="pull-right gray" data-toggle="modal" data-target="#evaluateModal" onclick="ChatModel.getEvaluateDetailData('+ JSON.stringify(data).replace(/\"/g,"'") +')">评价</div>'
                     }
-
+                    console.log(data);
                     var template =  '<div class="serviceO-Context radius">'+
                         '<div class="serviceOC-titl">'+
                             '<div>单号:<b>'+ data.orderNumber +'</b></div>'+
                             '<div class="pull-right state">'+ data.state +'</div>'+
                         '</div>'+
-                        '<div class="serviceOC-context" data-toggle="modal" data-target="#chatModal"> '+ data.context +'</div>'+
+                        '<div class="serviceOC-context" data-toggle="modal" data-target="#chatModal" onclick="ChatModel.getOrderServeDetailData('+ JSON.stringify(data).replace(/\"/g,"'") +')" > '+ data.context +'</div>'+
                         '<div class="serviceOC-foot">'+
                             '<div class="item state">'+ data.time +'</div>'+
                              stateBtnTmp+
@@ -355,7 +368,7 @@
                         '</div>'+
                         '<div class="expedite-foot">'+
                             '<button type="botton" class="btn btn-default pull-right expedite-close">暂不需要</button>'+
-                            '<button type="botton" class="btn btn-primary pull-right evaluate-color evaluateOrderFn" style="margin-right:20px">我要催单</button>'+
+                            '<button type="botton" class="btn btn-primary pull-right evaluate-color evaluateOrderFn" onclick="ChatModel.reminderBtnFn(event,'+ data.id +')" style="margin-right:20px">我要催单</button>'+
                         '</div>'+
                     '</div>'+
                     '</div>'
@@ -402,26 +415,18 @@
                     event.stopPropagation();
                     $(".expediteModel").addClass('hide')
                 });
-
-                // 点击催单禁用按钮并调借口
-                $('.evaluateOrderFn').click(function(e){
-                    $(e.target).attr('disabled','disabled');
-                    var tiem = setTimeout(function() {
-                        $(e.target).removeAttr('disabled');
-                    },1000*10);
-                    tiem = null;
-                });
             },
             // 获取服务单列表
             getOrderServiceList: function(data) {
                 
                 var self = this;
                 if(data.length > 0){
-                
                     $("#orderSerivceTemplate").empty();
                     var templates = '';
                     data.forEach(function(item) {
                         templates += self.template().serviceOrderTemplate({
+                            id:item.id,
+                            number: 1,
                             orderNumber: item.orderNumber,
                             state: item.state,
                             context: item.context,
@@ -462,11 +467,13 @@
                 /*----------------服务单----------------------*/
                 //服务单列表初始化---后台数据以数组形式传入
                 this.getOrderServiceList([{ 
+                    id:1,
                     orderNumber:'015415',
                     state:'处理中',
                     context:'服务单详情服务单详情服务单详情服务单详情服务单详情111',
                     time:'2017-10-13 16:21'
                 },{
+                    id:2,
                     orderNumber:'123456789',
                     state:'待评价',
                     context:'待评价待评价待评价待评价待评价待评价待评价222',
@@ -540,10 +547,12 @@
                     }
                 });
             },
-            // 获取服务单详情
-            getOrderServeDetailData: function() {
-                // ajax 获取详情
+            // 点击弹出服务单详情
+            getOrderServeDetailData: function(data) {
+                // 如服务单列表和详情是一个接口直接拿到data进行赋值，反之则拿id再获取详情数据
+                console.log(data);//通过id获取数据
                 var orderServeData = {
+                    id:'3',
                     creationTime: '2017-10-24 11:11',
                     assignTime: '2017-10-25 11:12',
                     figureOutTime: '2017-10-26 11:13',
@@ -560,16 +569,20 @@
                 $("#chat-modal").html(html);
             },
             // 获取评价详情
-            getEvaluateDetailData: function() {
+            getEvaluateDetailData: function(data) {
+                // 如服务单列表和详情是一个接口直接拿到data进行赋值，反之则拿id再获取详情数据
+                console.log(data);
                 // ajax 获取详情
                 var evaluateData = {
                     engineer: '工程师',
-                    jobNumber: '2102313'
+                    jobNumber: '2102313',
+                    id:'4'
                 }
                 var tmpl = $.templates("#evaluateTmpl");
                 var html = tmpl.render(evaluateData);
                 $("#evaluateDetail").html(html);
             },
+            // 监听数据字数长度
             listenTextareaLen: function(numberDom,inputVal) {
                 inputVal.keyup(function() {
                     var length = inputVal.val().length;
@@ -580,15 +593,51 @@
                     }
                     numberDom.html(length)
                 });
+            },
+            // 催单点击事件
+            reminderBtnFn: function(e,id) {
+                console.log(id);
+                $(e.target).attr('disabled','disabled');
+                var tiem = setTimeout(function() {
+                    $(e.target).removeAttr('disabled');
+                },1000*10);
+                tiem = null;
+            },
+            // 保存评价数据
+            saveEvaluateFn: function() {
+                var id = $(".jobId").attr('jobId'); // 获取id
+                // 获取选中礼物
+                var arr = new Array().slice.apply($(".present-box",".show").prevObject);
+                arr.forEach(function(element) {
+                    console.log($(element).siblings('img').attr('title'));
+                });
+
+                // 满意or不满意
+                var isSatisfaction = $(".isSatisfaction-btn",".Satisfaction-color").prevObject.attr("isSatisfaction");
+                console.log(isSatisfaction);
+                // 服务建议
+
+                var textareaVal = $("#textareaVal").val();
+                console.log(textareaVal);
+            },
+            // 提交报障
+            reportedBarrier: function() {
+                // .find("option:selected").text();
+                var projectName = $(".MprojectName").val();
+                var describe = $(".Mdescribe").val();
+                var file = '';
+                var department = $('.department').val();
+                var area = $('.Marea').val();
+            },
+            // 人工-提交不满意意见
+            submitYawp: function() {
+                var text = $('#yawpTextarea').val();
+                console.log(text)
             }
-
-
 
         }
     
-        var ChatModel = new ChatModel();
+        window.ChatModel = new ChatModel();
     
-    
-       
     }())
     
