@@ -26,11 +26,12 @@ input::-ms-input-placeholder {
     font-size: 13px; 
 }
 #chat-client {
-    padding: 20px;
+    /* padding: 20px; */
     border:1px solid #dddddd;
     border-top: none;
     margin-bottom: 15px;
     min-height: 375px;
+    height: 375px;
 }
 #chat-context{
 
