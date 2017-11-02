@@ -6,6 +6,7 @@ import textMessage from "./Message/text";
 import MessItem from "./Message/text";
 import iScroll from "iscroll";
 import ReactIScroll from "react-iscroll";
+import client from '../clinet';
 
 export default class Chat extends Component {
   constructor(props, context) {
@@ -21,6 +22,9 @@ export default class Chat extends Component {
       scrollTop: 0,
       placeholder: "你可以尝试输入类似'美信登陆不成功'、'mip显示异常' 等问题。"
     };
+    
+    client.init('aa')
+    
   }
 
   sendClick = value => {
@@ -29,6 +33,11 @@ export default class Chat extends Component {
     templ.push(messages);
     this.setState({
       messageList: templ
+    });
+
+    client.sendMsg({
+        msg: value,
+        toUser: 'bbb',
     });
 
     this.refs.iScroll.withIScroll(iScroll => {

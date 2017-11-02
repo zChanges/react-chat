@@ -37,7 +37,6 @@ class InputBox extends Component{
         const { placeholder } = this.props
         return (
             <div className="client-bootom">
-                {/* "你可以尝试输入类似'美信登陆不成功'、'mip显示异常' 等问题。" */}
                 <textarea 
                     placeholder={ placeholder }
                     ref={input => this.input = input}
