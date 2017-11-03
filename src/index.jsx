@@ -4,6 +4,7 @@ const React = require('react');
 const render = require('react-dom').render;
 const Provider = require('react-redux').Provider;
 const configureStore = require('./store/configureStore');
+import Login from './components/login';
 
 // Style
 require('font-awesome/css/font-awesome.min.css');
@@ -19,7 +20,8 @@ const store = configureStore()
 
 render(
   <Provider store={store}>
-    <Chat />
+    {/* <Chat /> */}
+    <Login />
   </Provider>,
   document.getElementById('app')
 )
