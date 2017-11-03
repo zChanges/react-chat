@@ -76,6 +76,7 @@ module.exports = {
     new ExtractTextPlugin('[name].css')
   ],
   resolve: {
-    extensions: ["", ".js", ".jsx", ".less", ".scss", ".css"] //后缀名自动补全
+    extensions: ["", ".js", ".jsx", ".less", ".scss", ".css"], //后缀名自动补全
+    alias: { 'react/lib/ReactMount': 'react-dom/lib/ReactMount' }
   }
 };

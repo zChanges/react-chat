@@ -33,9 +33,6 @@ input::-ms-input-placeholder {
     min-height: 375px;
     height: 375px;
 }
-#chat-context{
-
-}
 
 .chat-item{
     margin-bottom: 15px;
@@ -217,9 +214,6 @@ input::-ms-input-placeholder {
     cursor: pointer;
 }
 
-.notice{
-    
-}
 
 .notice-Context{
     border: 1px solid #ddd;
@@ -245,3 +239,4 @@ input::-ms-input-placeholder {
 .not-foot div {
     display: inline-block;
 }
+
